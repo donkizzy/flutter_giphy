@@ -1,11 +1,24 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_giphy/flutter_giphy.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return  Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+      ),
+      body: Center(
+        child: MaterialButton(
+          onPressed: (){
+            FlutterGiphy.showGifPicker(context: context);
+          },
+          child: const Text('Open Modal'),
+        )
+      ),
+    );
   }
 }
