@@ -1,9 +1,11 @@
+import 'package:equatable/equatable.dart';
+
 /// [Meta] holds the response statusCode [status], response message [msg] ,
 /// response ID [responseId]
-class Meta {
+class Meta extends Equatable{
 
   /// [Meta] Constructor
-  Meta({
+  const Meta({
     this.status,
     this.msg,
     this.responseId,
@@ -31,4 +33,7 @@ class Meta {
     'msg': msg,
     'response_id': responseId,
   };
+
+  @override
+  List<Object?> get props => [ status, msg, responseId];
 }

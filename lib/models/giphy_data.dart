@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_giphy/models/analytics.dart';
 import 'package:flutter_giphy/models/giphy_images.dart';
 import 'package:flutter_giphy/models/giphy_user.dart';
 
-class GiphyData {
-  GiphyData({
+class GiphyData extends Equatable{
+  const GiphyData({
     this.type,
     this.id,
     this.url,
@@ -103,4 +104,28 @@ class GiphyData {
         'analytics_response_payload': analyticsResponsePayload,
         'analytics': analytics?.toJson(),
       };
+
+  @override
+  List<Object?> get props => [
+        type,
+        id,
+        url,
+        slug,
+        bitlyGifUrl,
+        bitlyUrl,
+        embedUrl,
+        username,
+        source,
+        title,
+        rating,
+        contentUrl,
+        sourceTld,
+        sourcePostUrl,
+        isSticker,
+        importDatetime,
+        trendingDatetime,
+        images,
+        user,
+        analyticsResponsePayload,
+        analytics,];
 }

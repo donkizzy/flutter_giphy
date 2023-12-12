@@ -10,12 +10,12 @@ class GifRepository {
             receiveTimeout: const Duration(seconds: 3),
           ),
         ) {
-    dio.interceptors.add(
-      LogInterceptor(
-        responseBody: true,
-        requestBody: true,
-      ),
-    );
+    // dio.interceptors.add(
+    //   LogInterceptor(
+    //     responseBody: true,
+    //     requestBody: true,
+    //   ),
+    // );
   }
 
   final Dio dio;

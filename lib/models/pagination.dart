@@ -1,6 +1,8 @@
-class Pagination {
+import 'package:equatable/equatable.dart';
 
-  Pagination({
+class Pagination extends Equatable{
+
+  const Pagination({
     this.totalCount,
     this.count,
     this.offset,
@@ -20,4 +22,7 @@ class Pagination {
     'count': count,
     'offset': offset,
   };
+
+  @override
+  List<Object?> get props => [totalCount, count, offset];
 }

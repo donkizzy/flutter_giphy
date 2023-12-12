@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_giphy/models/giphy_data.dart';
 import 'package:flutter_giphy/models/giphy_meta.dart';
 import 'package:flutter_giphy/models/pagination.dart';
 
-class GiphyGif {
-  GiphyGif({
+class GiphyGif extends Equatable{
+  const GiphyGif({
     this.data,
     this.pagination,
     this.meta,
@@ -33,4 +34,7 @@ class GiphyGif {
         "pagination": pagination?.toJson(),
         "meta": meta?.toJson(),
       };
+
+  @override
+  List<Object?> get props => [data, pagination, meta];
 }
