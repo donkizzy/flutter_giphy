@@ -1,7 +1,6 @@
+/// Flutter Giphy makes it easy fou you be use Giphy in your flutter apps
+
 library flutter_giphy;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'models/giphy_gif.dart';
+export 'src/flutter_giphy.dart';
