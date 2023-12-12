@@ -1,8 +1,4 @@
-
 class Pagination {
-  final int? totalCount;
-  final int? count;
-  final int? offset;
 
   Pagination({
     this.totalCount,
@@ -11,14 +7,17 @@ class Pagination {
   });
 
   factory Pagination.fromJson(Map<String, dynamic> json) => Pagination(
-    totalCount: json["total_count"],
-    count: json["count"],
-    offset: json["offset"],
+    totalCount: json['total_count'] as int?,
+    count: json['count'] as int?,
+    offset: json['offset'] as int?,
   );
+  final int? totalCount;
+  final int? count;
+  final int? offset;
 
   Map<String, dynamic> toJson() => {
-    "total_count": totalCount,
-    "count": count,
-    "offset": offset,
+    'total_count': totalCount,
+    'count': count,
+    'offset': offset,
   };
 }
