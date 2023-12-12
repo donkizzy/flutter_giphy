@@ -25,7 +25,7 @@ class GifRepository {
   Future<Either<String, GiphyGif>> fetchTrendingGif() async {
     try {
       final response = await _dio.get<Map<String, dynamic>>(
-        'https://wookie.codesubmit.io/time-tracking',
+        'https://api.giphy.com/v1/gifs/trending?api_key=eRt8dIjUZHBpdzAjo2ZTAbGJ7f41ET50&limit=25&offset=0&rating=g&bundle=messaging_non_clips',
       );
       if (response.statusCode == 200 && response.data != null) {
         final giphyGif = GiphyGif.fromJson(response.data!,);
