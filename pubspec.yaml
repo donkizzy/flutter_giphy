@@ -20,9 +20,14 @@ dependencies:
 
 
 dev_dependencies:
+  bloc_test: ^9.1.5
+  build_runner: ^2.4.6
+  dartz_test: ^0.1.1
   flutter_test:
     sdk: flutter
+  mockito: ^5.4.3
   very_good_analysis: ^5.1.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
