@@ -19,7 +19,8 @@ void main() {
       _gifRepository = GifRepository(dio: mockDio);
     });
 
-    test('Test Success for Fetch Trending Gifs', () async {
+    test('Test Success for Fetch Trending Gifs when status code is  200',
+        () async {
       final dataResponse = {
         "data": [
           {
@@ -190,7 +191,8 @@ void main() {
       //expect(value == giphyGif, true);
     });
 
-    test('Test Failure for Fetch Trending Gifs', () async {
+    test('Test Failure for Fetch Trending Gifs when status code is  400',
+        () async {
       when(
         mockDio.get<Map<String, dynamic>>(
           'https://api.giphy.com/v1/gifs/trending?api_key=eRt8dIjUZHBpdzAjo2ZTAbGJ7f41ET50&limit=25&offset=0&rating=g&bundle=messaging_non_clips',
@@ -204,23 +206,32 @@ void main() {
       final result = await _gifRepository.fetchTrendingGif();
       // final value = result.getLeftOrFailTest();
       // expect(result, isLeft);
-      result.fold((l) {
-        expect( l, isA<String>());
-      }, (r) => null,);
+      result.fold(
+        (l) {
+          expect(l, isA<String>());
+        },
+        (r) => null,
+      );
     });
 
-    test('Test Failure for Fetch Trending Gifs', () async {
+    test('Test Failure for Fetch Trending Gifs throws an exception', () async {
       when(
         mockDio.get<Map<String, dynamic>>(
           'https://api.giphy.com/v1/gifs/trending?api_key=eRt8dIjUZHBpdzAjo2ZTAbGJ7f41ET50&limit=25&offset=0&rating=g&bundle=messaging_non_clips',
         ),
-      ).thenThrow(DioException(requestOptions: RequestOptions(),type: DioExceptionType.connectionTimeout,));
+      ).thenThrow(DioException(
+        requestOptions: RequestOptions(),
+        type: DioExceptionType.connectionTimeout,
+      ));
 
       final result = await _gifRepository.fetchTrendingGif();
-      result.fold((l) {
-        expect( l, throwsA(isA<DioException>()));
-        expect( l, isA<String>());
-      }, (r) => null,);
+      result.fold(
+        (l) {
+          expect(l, throwsA(isA<DioException>()));
+          expect(l, isA<String>());
+        },
+        (r) => null,
+      );
     });
   });
 }
