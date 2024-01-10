@@ -19,12 +19,13 @@ class FlutterGiphy {
 
   static void showGifPicker({
     required BuildContext context,
+    required String apikey,
     InputDecoration? decoration,
     Widget? loadingWidget,
     Color backgroundColor = Colors.white,
   }) {
-    _giphyCubit.fetchTrendingGif();
-    showModalBottomSheet(
+    _giphyCubit.fetchTrendingGif(apikey: apikey);
+    showModalBottomSheet<Widget>(
       context: context,
       backgroundColor: backgroundColor,
       constraints: BoxConstraints(

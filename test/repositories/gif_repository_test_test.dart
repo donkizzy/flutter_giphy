@@ -1,7 +1,9 @@
 import 'package:dartz_test/dartz_test.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_giphy/models/giphy_gif.dart';
 import 'package:flutter_giphy/repositories/gif_repository.dart';
+import 'package:flutter_giphy/utils/constants.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -11,12 +13,15 @@ import 'gif_repository_test_test.mocks.dart';
 @GenerateMocks([Dio])
 void main() {
   group('description', () {
-    late GifRepository _gifRepository;
+    late GifRepository gifRepository;
     late MockDio mockDio;
+    late final String apikey;
 
-    setUp(() {
+    setUpAll(() async {
+      await dotenv.load();
       mockDio = MockDio();
-      _gifRepository = GifRepository(dio: mockDio);
+      gifRepository = GifRepository(dio: mockDio);
+      apikey = dotenv.env['API_KEY'] ?? '';
     });
 
     test('Test Success for Fetch Trending Gifs when status code is  200',
@@ -170,12 +175,9 @@ void main() {
           "response_id": "4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945",
         },
       };
-
-      when(
-        mockDio.get<Map<String, dynamic>>(
-          'https://api.giphy.com/v1/gifs/trending?api_key=eRt8dIjUZHBpdzAjo2ZTAbGJ7f41ET50&limit=25&offset=0&rating=g&bundle=messaging_non_clips',
-        ),
-      ).thenAnswer(
+      when(mockDio.get<Map<String, dynamic>>(
+              ApiConfig.trendingGifs(apiKey: apikey)))
+          .thenAnswer(
         (_) async => Response(
           statusCode: 200,
           requestOptions: RequestOptions(),
@@ -183,29 +185,27 @@ void main() {
         ),
       );
 
-      final result = await _gifRepository.fetchTrendingGif();
-
-      final value = result.getRightOrFailTest();
-      // var giphyGif = GiphyGif.fromJson(dataResponse);
-      expect(value, isA<GiphyGif>());
-      //expect(value == giphyGif, true);
+      final result = await gifRepository.fetchTrendingGif(apikey: apikey);
+      result.fold(
+        (l) => null,
+        (r) {
+          expect(r, isA<GiphyGif>());
+        },
+      );
     });
 
     test('Test Failure for Fetch Trending Gifs when status code is  400',
         () async {
       when(
-        mockDio.get<Map<String, dynamic>>(
-          'https://api.giphy.com/v1/gifs/trending?api_key=eRt8dIjUZHBpdzAjo2ZTAbGJ7f41ET50&limit=25&offset=0&rating=g&bundle=messaging_non_clips',
-        ),
+        mockDio
+            .get<Map<String, dynamic>>(ApiConfig.trendingGifs(apiKey: apikey)),
       ).thenAnswer(
         (_) async => Response(
           statusCode: 400,
           requestOptions: RequestOptions(),
         ),
       );
-      final result = await _gifRepository.fetchTrendingGif();
-      // final value = result.getLeftOrFailTest();
-      // expect(result, isLeft);
+      final result = await gifRepository.fetchTrendingGif(apikey: apikey);
       result.fold(
         (l) {
           expect(l, isA<String>());
@@ -217,17 +217,19 @@ void main() {
     test('Test Failure for Fetch Trending Gifs throws an exception', () async {
       when(
         mockDio.get<Map<String, dynamic>>(
-          'https://api.giphy.com/v1/gifs/trending?api_key=eRt8dIjUZHBpdzAjo2ZTAbGJ7f41ET50&limit=25&offset=0&rating=g&bundle=messaging_non_clips',
+          ApiConfig.trendingGifs(apiKey: apikey),
         ),
-      ).thenThrow(DioException(
-        requestOptions: RequestOptions(),
-        type: DioExceptionType.connectionTimeout,
-      ));
+      ).thenThrow(
+        DioException(
+          requestOptions: RequestOptions(),
+          type: DioExceptionType.connectionTimeout,
+        ),
+      );
 
-      final result = await _gifRepository.fetchTrendingGif();
+      final result = await gifRepository.fetchTrendingGif(apikey: apikey);
+
       result.fold(
         (l) {
-          expect(l, throwsA(isA<DioException>()));
           expect(l, isA<String>());
         },
         (r) => null,

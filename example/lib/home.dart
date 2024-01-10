@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: MaterialButton(
           onPressed: (){
-            FlutterGiphy.showGifPicker(context: context);
+            FlutterGiphy.showGifPicker(context: context,apikey: 'YOUR_API_KEY');
           },
           child: const Text('Open Modal'),
         )
