@@ -20,7 +20,6 @@ class GiphyCubit extends Cubit<GiphyState> {
           emit(GiphySuccess(gif: r)),);
     } catch (e) {
       emit(GiphyError(error: e.toString()));
-      print(e.toString());
     }
   }
 

@@ -1,4 +1,3 @@
-import 'package:dartz_test/dartz_test.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_giphy/models/giphy_gif.dart';

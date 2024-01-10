@@ -13,7 +13,6 @@ import 'package:shimmer/shimmer.dart';
 class FlutterGiphy {
   FlutterGiphy();
 
-  static int _offset = 0;
   static  List<GiphyData> _trendingGifs = [];
   static final Dio _dio = Dio();
   static final GifRepository _gifRepository = GifRepository(dio: _dio);
@@ -104,7 +103,7 @@ class FlutterGiphy {
                   }
                   if (state is GiphySuccess) {
                     return LazyLoadScrollView(
-                      onEndOfPage: () => loadMore(apikey),
+                      onEndOfPage: () => loadMore(apikey,offset: _trendingGifs.length),
                       child: MasonryGridView.count(
                         crossAxisCount: 2,
                         mainAxisSpacing: 4,
@@ -154,8 +153,7 @@ class FlutterGiphy {
     );
   }
 
-  static loadMore(String apiKey) {
-    _offset++;
-    _giphyCubit.fetchTrendingGif(apikey: apiKey, offset: _offset);
+  static void loadMore(String apiKey, {int offset = 0}) {
+    _giphyCubit.fetchTrendingGif(apikey: apiKey, offset: offset);
   }
 }

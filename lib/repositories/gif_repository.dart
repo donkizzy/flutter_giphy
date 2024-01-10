@@ -23,6 +23,7 @@ class GifRepository {
       final response = await _dio.get<Map<String, dynamic>>(
        ApiConfig.trendingGifs(apiKey: apikey,offset: offset),
       );
+      print( ApiConfig.trendingGifs(apiKey: apikey,offset: offset));
       if (response.statusCode == 200 && response.data != null) {
         final giphyGif = GiphyGif.fromJson(
           response.data!,
