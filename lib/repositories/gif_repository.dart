@@ -18,10 +18,10 @@ class GifRepository {
 
 
   Future<Either<String, GiphyGif>> fetchTrendingGif(
-      {required String apikey,}) async {
+      {required String apikey,required int offset}) async {
     try {
       final response = await _dio.get<Map<String, dynamic>>(
-       ApiConfig.trendingGifs(apiKey: apikey),
+       ApiConfig.trendingGifs(apiKey: apikey,offset: offset),
       );
       if (response.statusCode == 200 && response.data != null) {
         final giphyGif = GiphyGif.fromJson(

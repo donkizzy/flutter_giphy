@@ -12,14 +12,15 @@ class GiphyCubit extends Cubit<GiphyState> {
 
   final GifRepository gifRepository;
 
-  Future<void> fetchTrendingGif({required String apikey}) async {
+  Future<void> fetchTrendingGif({required String apikey,required int offset}) async {
     try {
       emit(GiphyLoading());
-      final response = await gifRepository.fetchTrendingGif(apikey: apikey);
+      final response = await gifRepository.fetchTrendingGif(apikey: apikey,offset: offset);
       response.fold((l) => emit(GiphyError(error: l)), (r) =>
           emit(GiphySuccess(gif: r)),);
     } catch (e) {
       emit(GiphyError(error: e.toString()));
+      print(e.toString());
     }
   }
 
