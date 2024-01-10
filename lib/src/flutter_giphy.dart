@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_giphy/bloc/giphy_cubit.dart';
 import 'package:flutter_giphy/models/giphy_data.dart';
 import 'package:flutter_giphy/repositories/gif_repository.dart';
+import 'package:flutter_giphy/src/gif_grid_view.dart';
 import 'package:flutter_giphy/utils/lazy_load_scroll_view.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:shimmer/shimmer.dart';
@@ -102,40 +103,12 @@ class FlutterGiphy {
                         );
                   }
                   if (state is GiphySuccess) {
-                    return LazyLoadScrollView(
-                      onEndOfPage: () => loadMore(apikey,offset: _trendingGifs.length),
-                      child: MasonryGridView.count(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 4,
-                        crossAxisSpacing: 4,
-                        padding: const EdgeInsets.all(10),
-                        itemCount: _trendingGifs.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return CachedNetworkImage(
-                            imageUrl: _trendingGifs[index].images?.original?.url ?? '',
-                            placeholder: (context, url) {
-                              return loadingWidget ??
-                                  Shimmer.fromColors(
-                                    baseColor: Colors.grey.withOpacity(0.2),
-                                    highlightColor: Theme.of(context)
-                                        .colorScheme
-                                        .outline
-                                        .withOpacity(0.1),
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 150,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  );
-                            },
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                          );
-                        },
-                      ),
+                    return GifGridView(
+                      gifs: _trendingGifs,
+                      onEndOfPage: () {
+                        loadMore(apikey, offset: _trendingGifs.length);
+                      },
+                      loadingWidget: loadingWidget,
                     );
                   }
                   return const SizedBox.shrink();
