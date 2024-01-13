@@ -31,3 +31,26 @@ class GiphyError extends GiphyState {
   @override
   List<Object> get props => [error];
 }
+
+class SearchGifLoading extends GiphyState {
+  @override
+  List<Object> get props => [];
+}
+
+class SearchGifSuccess extends GiphyState {
+  const SearchGifSuccess({required this.gif});
+
+  final GiphyGif gif;
+
+  @override
+  List<Object> get props => [gif];
+}
+
+class SearchGifError extends GiphyState {
+  const SearchGifError({required this.error});
+
+  final String error;
+
+  @override
+  List<Object> get props => [error];
+}
