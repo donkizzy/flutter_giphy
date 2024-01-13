@@ -18,14 +18,33 @@ class GiphyCubit extends Cubit<GiphyState> {
       if (isFirstFetch) {
         emit(GiphyLoading());
       }
-      final response =
-          await gifRepository.fetchTrendingGif(apikey: apikey, offset: offset);
+      final response = await gifRepository.fetchTrendingGif(apikey: apikey, offset: offset);
       response.fold(
         (l) => emit(GiphyError(error: l)),
         (r) => emit(GiphySuccess(gif: r)),
       );
     } catch (e) {
       emit(GiphyError(error: e.toString()));
+    }
+  }
+
+  Future<void> searchGif(
+      {required String apikey,
+      required int offset,
+      required bool isFirstFetch,
+      required String keyword}) async {
+    try {
+      if (isFirstFetch) {
+        emit(GiphyLoading());
+      }
+      final response =
+          await gifRepository.searchGif(apikey: apikey, offset: offset,keyword: keyword);
+      response.fold(
+        (l) => emit(SearchGifError(error: l)),
+        (r) => emit(SearchGifSuccess(gif: r)),
+      );
+    } catch (e) {
+      emit(SearchGifError(error: e.toString()));
     }
   }
 }

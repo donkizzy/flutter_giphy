@@ -19,7 +19,6 @@ void main() {
     blocTest<GiphyCubit, GiphyState>(
       'emits [GiphyLoading, GiphySuccess] when fetchTrendingGif is successful',
       build: () {
-
         when(mockGifRepository.fetchTrendingGif(
                 apikey: anyNamed('apikey'), offset: anyNamed('offset')))
             .thenAnswer((_) async => Right(GiphyGif(
@@ -75,4 +74,45 @@ void main() {
       ],
     );
   });
+
+    group('Search Gifs', () {
+      blocTest<GiphyCubit, GiphyState>(
+        'emits [SearchGifLoading, SearchGifSuccess] when searchGif is successful',
+        build: () {
+          when(mockGifRepository.searchGif(
+              apikey: anyNamed('apikey'), offset: anyNamed('offset'), keyword: anyNamed('keyword')))
+              .thenAnswer((_) async => Right(GiphyGif(
+              data: [],
+              meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))));
+          return GiphyCubit(gifRepository: mockGifRepository);
+        },
+        act: (cubit) => cubit.searchGif(
+            apikey: 'test_api_key', offset: 0, keyword: 'test_keyword'),
+        expect: () => <GiphyState>[
+          SearchGifLoading(),
+          SearchGifSuccess(
+              gif: GiphyGif(
+                  data: [],
+                  meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))),
+        ],
+      );
+
+      blocTest<GiphyCubit, GiphyState>(
+        'emits [SearchGifLoading, SearchGifError] when searchGif fails',
+        build: () {
+          when(mockGifRepository.searchGif(
+              apikey: anyNamed('apikey'), offset: anyNamed('offset'), keyword: anyNamed('keyword')))
+              .thenAnswer((_) async => Left('Error'));
+          return GiphyCubit(gifRepository: mockGifRepository);
+        },
+        act: (cubit) => cubit.searchGif(
+            apikey: 'test_api_key', offset: 0, keyword: 'test_keyword'),
+        expect: () => <GiphyState>[
+          SearchGifLoading(),
+          SearchGifError(error: 'Error'),
+        ],
+      );
+    });
+
+
 }
