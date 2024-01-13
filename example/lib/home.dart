@@ -16,6 +16,16 @@ class HomePage extends StatelessWidget {
         onPressed: () {
           FlutterGiphy.showGifPicker(
               context: context,
+              searchBarDecoration: const InputDecoration(
+                hintText: 'Search Gif',
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                ),
+              ),
               apikey: dotenv.env['API_KEY'] ?? '');
         },
         child: const Text('Open Modal'),

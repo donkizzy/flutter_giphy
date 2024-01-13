@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,24 +5,35 @@ import 'package:flutter_giphy/bloc/giphy_cubit.dart';
 import 'package:flutter_giphy/models/giphy_data.dart';
 import 'package:flutter_giphy/repositories/gif_repository.dart';
 import 'package:flutter_giphy/src/gif_grid_view.dart';
-import 'package:flutter_giphy/utils/lazy_load_scroll_view.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:shimmer/shimmer.dart';
 
 /// Flutter Giphy makes it easy fou you be use Giphy in your flutter apps
 class FlutterGiphy {
-  FlutterGiphy();
 
+
+  // List to store trending gifs
   static  List<GiphyData> _trendingGifs = [];
-  static final Dio _dio = Dio();
-  static final GifRepository _gifRepository = GifRepository(dio: _dio);
 
+  // GifRepository instance for fetching gifs
+  static final GifRepository _gifRepository = GifRepository(dio: Dio());
+
+  // GiphyCubit instance for managing state
   static final GiphyCubit _giphyCubit = GiphyCubit(gifRepository: _gifRepository);
+
+  /// Displays a bottom sheet with a gif picker
+  ///
+  /// [context] is the BuildContext in which the bottom sheet is shown
+  /// [apikey] is the Giphy API key
+  /// [searchBarDecoration] is the InputDecoration for the search field
+  /// [loadingWidget] is the widget shown while gifs are loading
+  /// [errorWidget] is the widget shown when an error occurs
+  /// [backgroundColor] is the color of the bottom sheet's background
 
   static void showGifPicker({
     required BuildContext context,
     required String apikey,
-    InputDecoration? decoration,
+    InputDecoration? searchBarDecoration,
     Widget? loadingWidget,
     Widget? errorWidget,
     Color backgroundColor = Colors.white,
@@ -39,9 +49,9 @@ class FlutterGiphy {
         return Column(
           children: [
             TextFormField(
-              decoration: decoration ??
+              decoration: searchBarDecoration ??
                   InputDecoration(
-                    hintText: 'Search Gif',
+                    hintText: 'Search Giphy',
                     prefixIcon: Icon(
                       Icons.search,
                       color: Theme.of(context).iconTheme.color,
@@ -106,7 +116,7 @@ class FlutterGiphy {
                     return GifGridView(
                       gifs: _trendingGifs,
                       onEndOfPage: () {
-                        loadMore(apikey, offset: _trendingGifs.length);
+                        loadMore(apikey, offset: _trendingGifs.length,isFirstFetch: false);
                       },
                       loadingWidget: loadingWidget,
                     );
@@ -126,7 +136,7 @@ class FlutterGiphy {
     );
   }
 
-  static void loadMore(String apiKey, {int offset = 0}) {
-    _giphyCubit.fetchTrendingGif(apikey: apiKey, offset: offset);
+  static void loadMore(String apiKey, {int offset = 0, bool isFirstFetch = true, }) {
+    _giphyCubit.fetchTrendingGif(apikey: apiKey, offset: offset,isFirstFetch: isFirstFetch);
   }
 }

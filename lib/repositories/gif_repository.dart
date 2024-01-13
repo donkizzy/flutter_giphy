@@ -23,12 +23,27 @@ class GifRepository {
       final response = await _dio.get<Map<String, dynamic>>(
        ApiConfig.trendingGifs(apiKey: apikey,offset: offset),
       );
-      print( ApiConfig.trendingGifs(apiKey: apikey,offset: offset));
       if (response.statusCode == 200 && response.data != null) {
         final giphyGif = GiphyGif.fromJson(
           response.data!,
         );
 
+        return Right(giphyGif);
+      } else {
+        return Left(response.statusMessage ?? 'Error');
+      }
+    } on DioException catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<Either<String, GiphyGif>>   searchGif( {required String apikey,required int offset,required String keyword,}) async {
+    try {
+      final response = await _dio.get<Map<String, dynamic>>(ApiConfig.searchGifs(apiKey: apikey,offset: offset,keyword: keyword),);
+      if (response.statusCode == 200 && response.data != null) {
+        final giphyGif = GiphyGif.fromJson(
+          response.data!,
+        );
         return Right(giphyGif);
       } else {
         return Left(response.statusMessage ?? 'Error');
