@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'gif_repository_test_test.mocks.dart';
+import 'gif_repository_test.mocks.dart';
 
 @GenerateMocks([Dio])
 void main() {

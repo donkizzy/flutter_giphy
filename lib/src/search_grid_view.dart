@@ -1,23 +1,26 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_giphy/bloc/giphy_cubit.dart';
 import 'package:flutter_giphy/models/giphy_data.dart';
 import 'package:flutter_giphy/src/gif_grid_view.dart';
+import 'package:flutter_giphy/utils/debouncer.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:shimmer/shimmer.dart';
-
 
 class SearchGridView extends StatefulWidget {
   final Widget? loadingWidget;
   final Widget? errorWidget;
   final GiphyCubit giphyCubit;
-  final String apikey ;
-  final String keyword ;
+  final String apikey;
+  final TextEditingController searchController;
 
-
-  const SearchGridView({super.key, this.loadingWidget, this.errorWidget, required this.giphyCubit, required this.apikey, required this.keyword});
+  const SearchGridView(
+      {super.key,
+      this.loadingWidget,
+      this.errorWidget,
+      required this.giphyCubit,
+      required this.apikey,
+      required this.searchController});
 
   @override
   State<SearchGridView> createState() => _SearchGridViewState();
@@ -25,21 +28,27 @@ class SearchGridView extends StatefulWidget {
 
 class _SearchGridViewState extends State<SearchGridView> {
   List<GiphyData> searchGifs = [];
-  late Timer? _debounce;
+  late final Debouncer debouncer ;
 
   @override
   void initState() {
-    search(widget.apikey,keyword: widget.keyword);
+    widget.searchController.addListener(() {
+      search(widget.apikey, keyword: widget.searchController.text);
+    }
+    );
+
+
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<GiphyCubit, GiphyState>(
       bloc: widget.giphyCubit,
       buildWhen: (previous, current) {
-        return current is GiphyLoading || current is SearchGifSuccess || current is SearchGifError;
+        return current is GiphyLoading ||
+            current is SearchGifSuccess ||
+            current is SearchGifError;
       },
       builder: (context, state) {
         if (state is GiphyLoading) {
@@ -52,10 +61,8 @@ class _SearchGridViewState extends State<SearchGridView> {
             itemBuilder: (context, index) {
               return Shimmer.fromColors(
                 baseColor: Colors.grey.withOpacity(0.2),
-                highlightColor: Theme.of(context)
-                    .colorScheme
-                    .outline
-                    .withOpacity(0.1),
+                highlightColor:
+                    Theme.of(context).colorScheme.outline.withOpacity(0.1),
                 child: Container(
                   width: double.infinity,
                   height: 150,
@@ -79,7 +86,8 @@ class _SearchGridViewState extends State<SearchGridView> {
                       height: 10,
                     ),
                     MaterialButton(
-                      onPressed: () => search(widget.apikey,keyword: widget.keyword),
+                      onPressed: () =>
+                          search(widget.apikey, keyword: widget.searchController.text),
                       child: const Text('Retry'),
                     )
                   ],
@@ -90,7 +98,10 @@ class _SearchGridViewState extends State<SearchGridView> {
           return GifGridView(
             gifs: searchGifs,
             onEndOfPage: () {
-              search(widget.apikey, offset: searchGifs.length,isFirstFetch: false,keyword: widget.keyword);
+              search(widget.apikey,
+                  offset: searchGifs.length,
+                  isFirstFetch: false,
+                  keyword: widget.searchController.text);
             },
             loadingWidget: widget.loadingWidget,
           );
@@ -98,18 +109,29 @@ class _SearchGridViewState extends State<SearchGridView> {
         return const SizedBox.shrink();
       },
       listener: (BuildContext context, GiphyState state) {
-        if (state is GiphySuccess) {
+        if (state is SearchGifSuccess) {
           searchGifs.addAll(state.gif.data ?? []);
         }
       },
     );
   }
 
-  void search(String apiKey, {int offset = 0, required String keyword, bool isFirstFetch = true}) {
-    if (_debounce?.isActive ?? false) _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 1000), () {
-      widget.giphyCubit.searchGif(apikey: apiKey, offset: offset,keyword: keyword, isFirstFetch: isFirstFetch);
+  void search(String apiKey,
+      {int offset = 0, required String keyword, bool isFirstFetch = true}) {
+    debouncer = Debouncer(milliseconds: 500);
+    debouncer.run(() {
+      widget.giphyCubit.searchGif(
+          apikey: apiKey,
+          offset: offset,
+          keyword: keyword,
+          isFirstFetch: isFirstFetch);
     });
+  }
 
+  @override
+  void dispose() {
+    debouncer.cancel();
+    super.dispose();
   }
 }
+

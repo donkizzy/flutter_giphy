@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_giphy/bloc/giphy_cubit.dart';
@@ -10,6 +8,7 @@ import 'package:flutter_giphy/src/trending_grid_view.dart';
 /// Flutter Giphy makes it easy fou you be use Giphy in your flutter app
 class FlutterGiphy {
   static final searchController = TextEditingController();
+  static final ValueNotifier<bool> searchNotifier = ValueNotifier<bool>(false);
 
   // GifRepository instance for fetching gifs
   static final GifRepository _gifRepository = GifRepository(dio: Dio());
@@ -38,57 +37,66 @@ class FlutterGiphy {
     showModalBottomSheet<Widget>(
       context: context,
       backgroundColor: backgroundColor,
+      isScrollControlled: true,
       constraints: BoxConstraints(
         maxHeight: MediaQuery.of(context).size.height * 0.8,
       ),
       builder: (BuildContext context) {
-        return Column(
-          children: [
-            TextFormField(
-              controller: searchController,
-              onChanged: (value) {
-                // search(apikey,keyword: value);
-              },
-              decoration: searchBarDecoration ??
-                  InputDecoration(
-                    hintText: 'Search Giphy',
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Theme.of(context).iconTheme.color,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Expanded(
-              child: ValueListenableBuilder(
-                builder: (BuildContext context, bool value, Widget? child) {
-                  return value
-                      ? SearchGridView(
-                          loadingWidget: loadingWidget,
-                          errorWidget: errorWidget,
-                          giphyCubit: _giphyCubit,
-                          apikey: apikey,
-                          keyword: searchController.text,
-                        )
-                      : TrendingGridView(
-                          loadingWidget: loadingWidget,
-                          errorWidget: errorWidget,
-                          giphyCubit: _giphyCubit,
-                          apikey: apikey,
-                        );
+        return Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Column(
+            children: [
+              TextFormField(
+                controller: searchController,
+                onChanged: (value) {
+                  searchNotifier.value = value.isNotEmpty;
                 },
-                valueListenable:
-                    ValueNotifier<bool>(searchController.text.isNotEmpty),
+                decoration: searchBarDecoration ??
+                    InputDecoration(
+                      hintText: 'Search Giphy',
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                child: ValueListenableBuilder(
+                  builder: (BuildContext context, bool value, Widget? child) {
+                    return value
+                        ? SearchGridView(
+                            loadingWidget: loadingWidget,
+                            errorWidget: errorWidget,
+                            giphyCubit: _giphyCubit,
+                            apikey: apikey,
+                            searchController: searchController,
+                          )
+                        : TrendingGridView(
+                            loadingWidget: loadingWidget,
+                            errorWidget: errorWidget,
+                            giphyCubit: _giphyCubit,
+                            apikey: apikey,
+                          );
+                  },
+                  valueListenable: searchNotifier,
+                ),
+              ),
+            ],
+          ),
         );
       },
     );
+  }
+
+  static void clearSearch() {
+    searchController.clear();
+    searchNotifier.value = false;
   }
 }
