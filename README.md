@@ -16,7 +16,7 @@ know whether this package might be useful for them.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Show Gif Picker
 
 ## Getting started
 
@@ -25,12 +25,43 @@ start using the package.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+1. Import the package
+   First, you need to import the package into your Dart file:
 
 ```dart
-const like = 'sample';
+import 'package:flutter_giphy/flutter_giphy.dart';
 ```
+
+2. Show the Gif Picker
+    To show the Gif Picker, you need to call the showGifPicker method: This method requires a BuildContext and a Giphy API key. It also has optional parameters for customizing the search bar, loading widget, error widget, and the background color of the bottom sheet.
+
+    ```dart
+FlutterGiphy.showGifPicker(
+context: context,
+apikey: 'your_giphy_api_key',
+);
+    ```
+
+3. Handle Selected Gift
+    To handle the selected gif, you need to pass a callback function to the showGifPicker method. This callback function will be called when the user selects a gif.
+
+    ```dart
+FlutterGiphy.showGifPicker(
+  context: context,
+  apikey: 'your_giphy_api_key',
+  onSelected: (GiphyData gif) {
+    // Handle the selected gif here
+  },
+);
+    ```
+
+4. Clear Search  You can clear the search input and reset the gif picker to the trending view using the clearSearch method.  
+
+    ```dart
+FlutterGiphy.clearSearch();
+    ```
+
+Please replace 'your_giphy_api_key' with your actual Giphy API key.
 
 ## Additional information
 
