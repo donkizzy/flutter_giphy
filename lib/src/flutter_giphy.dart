@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_giphy/bloc/giphy_cubit.dart';
+import 'package:flutter_giphy/models/giphy_data.dart';
 import 'package:flutter_giphy/repositories/gif_repository.dart';
 import 'package:flutter_giphy/src/search_grid_view.dart';
 import 'package:flutter_giphy/src/trending_grid_view.dart';
@@ -33,6 +34,7 @@ class FlutterGiphy {
     Widget? loadingWidget,
     Widget? errorWidget,
     Color backgroundColor = Colors.white,
+    final ValueChanged<GiphyData>? onSelected ,
   }) {
     showModalBottomSheet<Widget>(
       context: context,
@@ -77,12 +79,14 @@ class FlutterGiphy {
                             giphyCubit: _giphyCubit,
                             apikey: apikey,
                             searchController: searchController,
+                            onSelected: onSelected,
                           )
                         : TrendingGridView(
                             loadingWidget: loadingWidget,
                             errorWidget: errorWidget,
                             giphyCubit: _giphyCubit,
                             apikey: apikey,
+                      onSelected: onSelected,
                           );
                   },
                   valueListenable: searchNotifier,

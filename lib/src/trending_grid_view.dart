@@ -11,9 +11,10 @@ class TrendingGridView extends StatefulWidget {
   final Widget? errorWidget;
   final GiphyCubit giphyCubit;
   final String apikey ;
+  final ValueChanged<GiphyData>? onSelected ;
 
 
-  const TrendingGridView({super.key, this.loadingWidget, this.errorWidget, required this.giphyCubit, required this.apikey,});
+  const TrendingGridView({super.key, this.loadingWidget, this.errorWidget, required this.giphyCubit, required this.apikey, this.onSelected,});
 
   @override
   State<TrendingGridView> createState() => _TrendingGridViewState();
@@ -86,6 +87,7 @@ class _TrendingGridViewState extends State<TrendingGridView> {
               loadMore(widget.apikey, offset: trendingGifs.length,isFirstFetch: false);
             },
             loadingWidget: widget.loadingWidget,
+            onSelected: widget.onSelected,
           );
         }
         return const SizedBox.shrink();

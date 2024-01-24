@@ -10,12 +10,13 @@ class GifGridView extends StatefulWidget {
   final VoidCallback? onEndOfPage;
 
   final Widget? loadingWidget;
+  final ValueChanged<GiphyData> onSelected ;
 
   const GifGridView(
       {super.key,
       required this.gifs,
       this.onEndOfPage,
-       this.loadingWidget});
+       this.loadingWidget, required this.onSelected});
 
   @override
   State<GifGridView> createState() => _GifGridViewState();
@@ -34,27 +35,33 @@ class _GifGridViewState extends State<GifGridView> {
         itemCount: widget.gifs.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          return CachedNetworkImage(
-            imageUrl: widget.gifs[index].images?.original?.url ?? '',
-            placeholder: (context, url) {
-              return widget.loadingWidget ??
-                  Shimmer.fromColors(
-                    baseColor: Colors.grey.withOpacity(0.2),
-                    highlightColor: Theme.of(context)
-                        .colorScheme
-                        .outline
-                        .withOpacity(0.1),
-                    child: Container(
-                      width: double.infinity,
-                      height: 150,
-                      decoration: const BoxDecoration(
-                        color: Colors.black,
-                      ),
-                    ),
-                  );
+          return InkWell(
+            onTap: (){
+              widget.onSelected.call(widget.gifs[index]);
+              Navigator.pop(context);
             },
-            errorWidget: (context, url, error) =>
-            const Icon(Icons.error),
+            child: CachedNetworkImage(
+              imageUrl: widget.gifs[index].images?.original?.url ?? '',
+              placeholder: (context, url) {
+                return widget.loadingWidget ??
+                    Shimmer.fromColors(
+                      baseColor: Colors.grey.withOpacity(0.2),
+                      highlightColor: Theme.of(context)
+                          .colorScheme
+                          .outline
+                          .withOpacity(0.1),
+                      child: Container(
+                        width: double.infinity,
+                        height: 150,
+                        decoration: const BoxDecoration(
+                          color: Colors.black,
+                        ),
+                      ),
+                    );
+              },
+              errorWidget: (context, url, error) =>
+              const Icon(Icons.error),
+            ),
           );
         },
       ),

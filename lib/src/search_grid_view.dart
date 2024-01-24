@@ -13,6 +13,7 @@ class SearchGridView extends StatefulWidget {
   final GiphyCubit giphyCubit;
   final String apikey;
   final TextEditingController searchController;
+  final ValueChanged<GiphyData>? onSelected ;
 
   const SearchGridView(
       {super.key,
@@ -20,7 +21,7 @@ class SearchGridView extends StatefulWidget {
       this.errorWidget,
       required this.giphyCubit,
       required this.apikey,
-      required this.searchController});
+      required this.searchController, this.onSelected});
 
   @override
   State<SearchGridView> createState() => _SearchGridViewState();
@@ -104,6 +105,7 @@ class _SearchGridViewState extends State<SearchGridView> {
                   keyword: widget.searchController.text);
             },
             loadingWidget: widget.loadingWidget,
+            onSelected: widget.onSelected,
           );
         }
         return const SizedBox.shrink();
