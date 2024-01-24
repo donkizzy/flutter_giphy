@@ -31,7 +31,9 @@ class HomePage extends StatelessWidget {
                     },
                     child: const Icon(Icons.clear,color: Colors.black,)),
               ),
-              apikey: dotenv.env['API_KEY'] ?? '');
+              apikey: dotenv.env['API_KEY'] ?? '', onSelected: (GiphyData value) {
+
+          });
         },
         child: const Text('Open Modal'),
       )),

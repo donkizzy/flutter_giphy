@@ -34,7 +34,7 @@ class FlutterGiphy {
     Widget? loadingWidget,
     Widget? errorWidget,
     Color backgroundColor = Colors.white,
-    final ValueChanged<GiphyData>? onSelected ,
+    required final ValueChanged<GiphyData> onSelected ,
   }) {
     showModalBottomSheet<Widget>(
       context: context,

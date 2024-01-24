@@ -11,10 +11,10 @@ class TrendingGridView extends StatefulWidget {
   final Widget? errorWidget;
   final GiphyCubit giphyCubit;
   final String apikey ;
-  final ValueChanged<GiphyData>? onSelected ;
+  final ValueChanged<GiphyData> onSelected ;
 
 
-  const TrendingGridView({super.key, this.loadingWidget, this.errorWidget, required this.giphyCubit, required this.apikey, this.onSelected,});
+  const TrendingGridView({super.key, this.loadingWidget, this.errorWidget, required this.giphyCubit, required this.apikey, required this.onSelected,});
 
   @override
   State<TrendingGridView> createState() => _TrendingGridViewState();

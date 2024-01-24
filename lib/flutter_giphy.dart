@@ -3,4 +3,5 @@
 library flutter_giphy;
 
 export 'models/giphy_gif.dart';
+export 'models/giphy_data.dart';
 export 'src/flutter_giphy.dart';
