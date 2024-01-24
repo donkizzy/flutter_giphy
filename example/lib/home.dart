@@ -16,15 +16,20 @@ class HomePage extends StatelessWidget {
         onPressed: () {
           FlutterGiphy.showGifPicker(
               context: context,
-              searchBarDecoration: const InputDecoration(
+              searchBarDecoration:  InputDecoration(
                 hintText: 'Search Gif',
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.search,
                   color: Colors.white,
                 ),
-                border: OutlineInputBorder(
+                border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                 ),
+                suffixIcon: InkWell(
+                    onTap: () {
+                      FlutterGiphy.clearSearch();
+                    },
+                    child: const Icon(Icons.clear,color: Colors.black,)),
               ),
               apikey: dotenv.env['API_KEY'] ?? '');
         },

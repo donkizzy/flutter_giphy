@@ -75,9 +75,9 @@ void main() {
     );
   });
 
-    group('Search Gifs', () {
+  group('Search Gifs', () {
       blocTest<GiphyCubit, GiphyState>(
-        'emits [SearchGifLoading, SearchGifSuccess] when searchGif is successful',
+        'emits [SearchGifLoading, SearchGifSuccess] when searchGif is successful for the first time',
         build: () {
           when(mockGifRepository.searchGif(
               apikey: anyNamed('apikey'), offset: anyNamed('offset'), keyword: anyNamed('keyword')))
@@ -87,9 +87,29 @@ void main() {
           return GiphyCubit(gifRepository: mockGifRepository);
         },
         act: (cubit) => cubit.searchGif(
-            apikey: 'test_api_key', offset: 0, keyword: 'test_keyword'),
+            apikey: 'test_api_key', offset: 0, keyword: 'test_keyword', isFirstFetch: true),
         expect: () => <GiphyState>[
-          SearchGifLoading(),
+          GiphyLoading(),
+          SearchGifSuccess(
+              gif: GiphyGif(
+                  data: [],
+                  meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))),
+        ],
+      );
+
+      blocTest<GiphyCubit, GiphyState>(
+        'emits [SearchGifLoading, SearchGifSuccess] when searchGif is successful and fetching the next page',
+        build: () {
+          when(mockGifRepository.searchGif(
+              apikey: anyNamed('apikey'), offset: anyNamed('offset'), keyword: anyNamed('keyword')))
+              .thenAnswer((_) async => Right(GiphyGif(
+              data: [],
+              meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))));
+          return GiphyCubit(gifRepository: mockGifRepository);
+        },
+        act: (cubit) => cubit.searchGif(
+            apikey: 'test_api_key', offset: 0, keyword: 'test_keyword', isFirstFetch: false),
+        expect: () => <GiphyState>[
           SearchGifSuccess(
               gif: GiphyGif(
                   data: [],
@@ -106,9 +126,9 @@ void main() {
           return GiphyCubit(gifRepository: mockGifRepository);
         },
         act: (cubit) => cubit.searchGif(
-            apikey: 'test_api_key', offset: 0, keyword: 'test_keyword'),
+            apikey: 'test_api_key', offset: 0, keyword: 'test_keyword',isFirstFetch: true),
         expect: () => <GiphyState>[
-          SearchGifLoading(),
+          GiphyLoading(),
           SearchGifError(error: 'Error'),
         ],
       );
