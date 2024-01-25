@@ -14,6 +14,7 @@ class SearchGridView extends StatefulWidget {
   final String apikey;
   final TextEditingController searchController;
   final ValueChanged<GiphyData> onSelected ;
+  final String language;
 
   const SearchGridView(
       {super.key,
@@ -21,7 +22,9 @@ class SearchGridView extends StatefulWidget {
       this.errorWidget,
       required this.giphyCubit,
       required this.apikey,
-      required this.searchController, required this.onSelected});
+      required this.searchController,
+      required this.onSelected,
+      required this.language});
 
   @override
   State<SearchGridView> createState() => _SearchGridViewState();
@@ -37,8 +40,6 @@ class _SearchGridViewState extends State<SearchGridView> {
       search(widget.apikey, keyword: widget.searchController.text);
     }
     );
-
-
     super.initState();
   }
 
@@ -126,7 +127,9 @@ class _SearchGridViewState extends State<SearchGridView> {
           apikey: apiKey,
           offset: offset,
           keyword: keyword,
-          isFirstFetch: isFirstFetch);
+          isFirstFetch: isFirstFetch,
+          language: widget.language,
+      );
     });
   }
 

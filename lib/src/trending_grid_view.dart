@@ -10,11 +10,21 @@ class TrendingGridView extends StatefulWidget {
   final Widget? loadingWidget;
   final Widget? errorWidget;
   final GiphyCubit giphyCubit;
-  final String apikey ;
-  final ValueChanged<GiphyData> onSelected ;
+  final String apikey;
 
+  final ValueChanged<GiphyData> onSelected;
 
-  const TrendingGridView({super.key, this.loadingWidget, this.errorWidget, required this.giphyCubit, required this.apikey, required this.onSelected,});
+  final String language;
+
+  const TrendingGridView({
+    super.key,
+    this.loadingWidget,
+    this.errorWidget,
+    required this.giphyCubit,
+    required this.apikey,
+    required this.onSelected,
+    required this.language,
+  });
 
   @override
   State<TrendingGridView> createState() => _TrendingGridViewState();
@@ -28,12 +38,15 @@ class _TrendingGridViewState extends State<TrendingGridView> {
     loadMore(widget.apikey);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<GiphyCubit, GiphyState>(
       bloc: widget.giphyCubit,
       buildWhen: (previous, current) {
-        return current is GiphyLoading || current is GiphySuccess || current is GiphyError;
+        return current is GiphyLoading ||
+            current is GiphySuccess ||
+            current is GiphyError;
       },
       builder: (context, state) {
         if (state is GiphyLoading) {
@@ -46,10 +59,8 @@ class _TrendingGridViewState extends State<TrendingGridView> {
             itemBuilder: (context, index) {
               return Shimmer.fromColors(
                 baseColor: Colors.grey.withOpacity(0.2),
-                highlightColor: Theme.of(context)
-                    .colorScheme
-                    .outline
-                    .withOpacity(0.1),
+                highlightColor:
+                    Theme.of(context).colorScheme.outline.withOpacity(0.1),
                 child: Container(
                   width: double.infinity,
                   height: 150,
@@ -84,7 +95,8 @@ class _TrendingGridViewState extends State<TrendingGridView> {
           return GifGridView(
             gifs: trendingGifs,
             onEndOfPage: () {
-              loadMore(widget.apikey, offset: trendingGifs.length,isFirstFetch: false);
+              loadMore(widget.apikey,
+                  offset: trendingGifs.length, isFirstFetch: false);
             },
             loadingWidget: widget.loadingWidget,
             onSelected: widget.onSelected,
@@ -100,9 +112,12 @@ class _TrendingGridViewState extends State<TrendingGridView> {
     );
   }
 
-   void loadMore(String apiKey, {int offset = 0, bool isFirstFetch = true, }) {
-    widget.giphyCubit.fetchTrendingGif(apikey: apiKey, offset: offset,isFirstFetch: isFirstFetch);
+  void loadMore(
+    String apiKey, {
+    int offset = 0,
+    bool isFirstFetch = true,
+  }) {
+    widget.giphyCubit.fetchTrendingGif(
+        apikey: apiKey, offset: offset, isFirstFetch: isFirstFetch,language: widget.language);
   }
-
-
 }

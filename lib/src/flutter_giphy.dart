@@ -5,10 +5,16 @@ import 'package:flutter_giphy/models/giphy_data.dart';
 import 'package:flutter_giphy/repositories/gif_repository.dart';
 import 'package:flutter_giphy/src/search_grid_view.dart';
 import 'package:flutter_giphy/src/trending_grid_view.dart';
+import 'package:flutter_giphy/utils/language_code.dart';
 
 /// Flutter Giphy makes it easy fou you be use Giphy in your flutter app
 class FlutterGiphy {
+
+
+  // TextEditingController for the search field
   static final searchController = TextEditingController();
+
+  // ValueNotifier for the search field
   static final ValueNotifier<bool> searchNotifier = ValueNotifier<bool>(false);
 
   // GifRepository instance for fetching gifs
@@ -26,6 +32,8 @@ class FlutterGiphy {
   /// [loadingWidget] is the widget shown while gifs are loading
   /// [errorWidget] is the widget shown when an error occurs
   /// [backgroundColor] is the color of the bottom sheet's background
+  /// [onSelected] is the callback when a gif is selected
+  /// [language] is the language of the gifs
 
   static void showGifPicker({
     required BuildContext context,
@@ -34,7 +42,8 @@ class FlutterGiphy {
     Widget? loadingWidget,
     Widget? errorWidget,
     Color backgroundColor = Colors.white,
-    required final ValueChanged<GiphyData> onSelected ,
+    required final ValueChanged<GiphyData> onSelected,
+    String language = GiphyLanguage.Arabic,
   }) {
     showModalBottomSheet<Widget>(
       context: context,
@@ -80,13 +89,15 @@ class FlutterGiphy {
                             apikey: apikey,
                             searchController: searchController,
                             onSelected: onSelected,
+                            language: language,
                           )
                         : TrendingGridView(
                             loadingWidget: loadingWidget,
                             errorWidget: errorWidget,
                             giphyCubit: _giphyCubit,
                             apikey: apikey,
-                      onSelected: onSelected,
+                            onSelected: onSelected,
+                            language: language,
                           );
                   },
                   valueListenable: searchNotifier,
