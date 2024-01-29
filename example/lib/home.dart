@@ -84,9 +84,7 @@ class _HomePageState extends State<HomePage> {
 
   void fetchTrendingGif() async {
     Giphy rawGiphy = Giphy(apiKey: dotenv.env['API_KEY'] ?? '');
-    var trendingGifs = await rawGiphy.fetchTrendingGif(
-      offset: 0,
-    );
+    var trendingGifs = await rawGiphy.fetchTrendingGif(offset: 0);
     setState(() {
       fetchTrendingGifs.addAll(trendingGifs.data ?? []);
     });

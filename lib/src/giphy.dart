@@ -9,7 +9,7 @@ class Giphy {
   final String apiKey;
   final String language;
 
-  Giphy({required this.apiKey, this.language = GiphyLanguage.Norwegian})
+  Giphy({required this.apiKey, this.language = GiphyLanguage.English})
       : assert(apiKey.trim() != '', 'Parameter apiKey should not be empty.');
 
   static final GifRepository _gifRepository = GifRepository(dio: Dio());
