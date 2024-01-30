@@ -1,4 +1,3 @@
-
 class GiphyLanguage {
   static const English = 'en';
   static const Spanish = 'es';
@@ -32,5 +31,4 @@ class GiphyLanguage {
   static const Malay = 'ms';
   static const Norwegian = 'no';
   static const Ukrainian = 'uk';
-
 }

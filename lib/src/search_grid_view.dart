@@ -13,7 +13,8 @@ class SearchGridView extends StatefulWidget {
   final GiphyCubit giphyCubit;
   final String apikey;
   final TextEditingController searchController;
-  final ValueChanged<GiphyData> onSelected ;
+  final ValueChanged<GiphyData> onSelected;
+
   final String language;
 
   const SearchGridView(
@@ -32,14 +33,13 @@ class SearchGridView extends StatefulWidget {
 
 class _SearchGridViewState extends State<SearchGridView> {
   List<GiphyData> searchGifs = [];
-  late final Debouncer debouncer ;
+  late final Debouncer debouncer;
 
   @override
   void initState() {
     widget.searchController.addListener(() {
       search(widget.apikey, keyword: widget.searchController.text);
-    }
-    );
+    });
     super.initState();
   }
 
@@ -88,8 +88,8 @@ class _SearchGridViewState extends State<SearchGridView> {
                       height: 10,
                     ),
                     MaterialButton(
-                      onPressed: () =>
-                          search(widget.apikey, keyword: widget.searchController.text),
+                      onPressed: () => search(widget.apikey,
+                          keyword: widget.searchController.text),
                       child: const Text('Retry'),
                     )
                   ],
@@ -124,11 +124,11 @@ class _SearchGridViewState extends State<SearchGridView> {
     debouncer = Debouncer(milliseconds: 500);
     debouncer.run(() {
       widget.giphyCubit.searchGif(
-          apikey: apiKey,
-          offset: offset,
-          keyword: keyword,
-          isFirstFetch: isFirstFetch,
-          language: widget.language,
+        apikey: apiKey,
+        offset: offset,
+        keyword: keyword,
+        isFirstFetch: isFirstFetch,
+        language: widget.language,
       );
     });
   }
@@ -139,4 +139,3 @@ class _SearchGridViewState extends State<SearchGridView> {
     super.dispose();
   }
 }
-

@@ -21,7 +21,7 @@ void main() {
         "type": "gif",
         "id": "DDkZETHtyhWNXOlb4R",
         "url":
-        "https://giphy.com/gifs/netflix-bayard-rustin-movie-netflix-DDkZETHtyhWNXOlb4R",
+            "https://giphy.com/gifs/netflix-bayard-rustin-movie-netflix-DDkZETHtyhWNXOlb4R",
         "slug": "netflix-bayard-rustin-movie-netflix-DDkZETHtyhWNXOlb4R",
         "bitly_gif_url": "https://gph.is/g/4bnmbrv",
         "bitly_url": "https://gph.is/g/4bnmbrv",
@@ -42,13 +42,13 @@ void main() {
             "width": "480",
             "size": "2061959",
             "url":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/giphy.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=giphy.gif&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/giphy.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=giphy.gif&ct=g",
             "mp4_size": "250962",
             "mp4":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/giphy.mp4?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=giphy.mp4&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/giphy.mp4?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=giphy.mp4&ct=g",
             "webp_size": "474694",
             "webp":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/giphy.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=giphy.webp&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/giphy.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=giphy.webp&ct=g",
             "frames": "28",
             "hash": "216c8ab7217acf26c962e9d450f2cfdc",
           },
@@ -57,102 +57,102 @@ void main() {
             "width": "200",
             "size": "353571",
             "url":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200.gif&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200.gif&ct=g",
             "mp4_size": "68277",
             "mp4":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200.mp4?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200.mp4&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200.mp4?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200.mp4&ct=g",
             "webp_size": "162768",
             "webp":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200.webp&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200.webp&ct=g",
           },
           "fixed_height_downsampled": {
             "height": "200",
             "width": "200",
             "size": "92100",
             "url":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200_d.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200_d.gif&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200_d.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200_d.gif&ct=g",
             "webp_size": "62038",
             "webp":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200_d.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200_d.webp&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200_d.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200_d.webp&ct=g",
           },
           "fixed_height_small": {
             "height": "100",
             "width": "100",
             "size": "121426",
             "url":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/100.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=100.gif&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/100.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=100.gif&ct=g",
             "mp4_size": "26356",
             "mp4":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/100.mp4?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=100.mp4&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/100.mp4?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=100.mp4&ct=g",
             "webp_size": "67972",
             "webp":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/100.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=100.webp&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/100.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=100.webp&ct=g",
           },
           "fixed_width": {
             "height": "200",
             "width": "200",
             "size": "353571",
             "url":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200w.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200w.gif&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200w.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200w.gif&ct=g",
             "mp4_size": "68277",
             "mp4":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200w.mp4?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200w.mp4&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200w.mp4?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200w.mp4&ct=g",
             "webp_size": "162768",
             "webp":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200w.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200w.webp&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200w.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200w.webp&ct=g",
           },
           "fixed_width_downsampled": {
             "height": "200",
             "width": "200",
             "size": "92100",
             "url":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200w_d.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200w_d.gif&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200w_d.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200w_d.gif&ct=g",
             "webp_size": "62038",
             "webp":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200w_d.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200w_d.webp&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/200w_d.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=200w_d.webp&ct=g",
           },
           "fixed_width_small": {
             "height": "100",
             "width": "100",
             "size": "121426",
             "url":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/100w.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=100w.gif&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/100w.gif?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=100w.gif&ct=g",
             "mp4_size": "26356",
             "mp4":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/100w.mp4?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=100w.mp4&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/100w.mp4?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=100w.mp4&ct=g",
             "webp_size": "67972",
             "webp":
-            "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/100w.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=100w.webp&ct=g",
+                "https://media4.giphy.com/media/DDkZETHtyhWNXOlb4R/100w.webp?cid=ed0d52ad4lhaq9cw4tgzhqllehwo0duyg0fovxpmwtqbl945&ep=v1_gifs_trending&rid=100w.webp&ct=g",
           },
         },
         "user": {
           "avatar_url":
-          "https://media0.giphy.com/avatars/netflix/4oBuhqPAhFem.png",
+              "https://media0.giphy.com/avatars/netflix/4oBuhqPAhFem.png",
           "banner_image": "",
           "banner_url": "",
           "profile_url": "https://giphy.com/netflix/",
           "username": "netflix",
           "display_name": "NETFLIX",
           "description":
-          "See What's Next in entertainment and Netflix original series, movies, TV, docs, and comedies. You can stream Netflix anytime, anywhere, on any device.",
+              "See What's Next in entertainment and Netflix original series, movies, TV, docs, and comedies. You can stream Netflix anytime, anywhere, on any device.",
           "instagram_url": "",
           "website_url": "http://netflix.com",
           "is_verified": true,
         },
         "analytics_response_payload":
-        "e=Z2lmX2lkPUREa1pFVEh0eWhXTlhPbGI0UiZldmVudF90eXBlPUdJRl9UUkVORElORyZjaWQ9ZWQwZDUyYWQ0bGhhcTljdzR0Z3pocWxsZWh3bzBkdXlnMGZvdnhwbXd0cWJsOTQ1JmN0PWc",
+            "e=Z2lmX2lkPUREa1pFVEh0eWhXTlhPbGI0UiZldmVudF90eXBlPUdJRl9UUkVORElORyZjaWQ9ZWQwZDUyYWQ0bGhhcTljdzR0Z3pocWxsZWh3bzBkdXlnMGZvdnhwbXd0cWJsOTQ1JmN0PWc",
         "analytics": {
           "onload": {
             "url":
-            "https://giphy-analytics.giphy.com/v2/pingback_simple?analytics_response_payload=e%3DZ2lmX2lkPUREa1pFVEh0eWhXTlhPbGI0UiZldmVudF90eXBlPUdJRl9UUkVORElORyZjaWQ9ZWQwZDUyYWQ0bGhhcTljdzR0Z3pocWxsZWh3bzBkdXlnMGZvdnhwbXd0cWJsOTQ1JmN0PWc&action_type=SEEN",
+                "https://giphy-analytics.giphy.com/v2/pingback_simple?analytics_response_payload=e%3DZ2lmX2lkPUREa1pFVEh0eWhXTlhPbGI0UiZldmVudF90eXBlPUdJRl9UUkVORElORyZjaWQ9ZWQwZDUyYWQ0bGhhcTljdzR0Z3pocWxsZWh3bzBkdXlnMGZvdnhwbXd0cWJsOTQ1JmN0PWc&action_type=SEEN",
           },
           "onclick": {
             "url":
-            "https://giphy-analytics.giphy.com/v2/pingback_simple?analytics_response_payload=e%3DZ2lmX2lkPUREa1pFVEh0eWhXTlhPbGI0UiZldmVudF90eXBlPUdJRl9UUkVORElORyZjaWQ9ZWQwZDUyYWQ0bGhhcTljdzR0Z3pocWxsZWh3bzBkdXlnMGZvdnhwbXd0cWJsOTQ1JmN0PWc&action_type=CLICK",
+                "https://giphy-analytics.giphy.com/v2/pingback_simple?analytics_response_payload=e%3DZ2lmX2lkPUREa1pFVEh0eWhXTlhPbGI0UiZldmVudF90eXBlPUdJRl9UUkVORElORyZjaWQ9ZWQwZDUyYWQ0bGhhcTljdzR0Z3pocWxsZWh3bzBkdXlnMGZvdnhwbXd0cWJsOTQ1JmN0PWc&action_type=CLICK",
           },
           "onsent": {
             "url":
-            "https://giphy-analytics.giphy.com/v2/pingback_simple?analytics_response_payload=e%3DZ2lmX2lkPUREa1pFVEh0eWhXTlhPbGI0UiZldmVudF90eXBlPUdJRl9UUkVORElORyZjaWQ9ZWQwZDUyYWQ0bGhhcTljdzR0Z3pocWxsZWh3bzBkdXlnMGZvdnhwbXd0cWJsOTQ1JmN0PWc&action_type=SENT",
+                "https://giphy-analytics.giphy.com/v2/pingback_simple?analytics_response_payload=e%3DZ2lmX2lkPUREa1pFVEh0eWhXTlhPbGI0UiZldmVudF90eXBlPUdJRl9UUkVORElORyZjaWQ9ZWQwZDUyYWQ0bGhhcTljdzR0Z3pocWxsZWh3bzBkdXlnMGZvdnhwbXd0cWJsOTQ1JmN0PWc&action_type=SENT",
           },
         },
       },
@@ -173,11 +173,10 @@ void main() {
   });
 
   group('Fetch Trending Gifs', () {
-
     test('Test Success for Fetch Trending Gifs when status code is  200',
         () async {
-      when(mockDio.get<Map<String, dynamic>>(
-              ApiConfig.trendingGifs(apiKey: apikey,offset: 0,language: GiphyLanguage.English)))
+      when(mockDio.get<Map<String, dynamic>>(ApiConfig.trendingGifs(
+              apiKey: apikey, offset: 0, language: GiphyLanguage.English)))
           .thenAnswer(
         (_) async => Response(
           statusCode: 200,
@@ -186,7 +185,8 @@ void main() {
         ),
       );
 
-      final result = await gifRepository.fetchTrendingGif(apikey: apikey,offset: 0,language: GiphyLanguage.English);
+      final result = await gifRepository.fetchTrendingGif(
+          apikey: apikey, offset: 0, language: GiphyLanguage.English);
       result.fold(
         (l) => null,
         (r) {
@@ -198,15 +198,16 @@ void main() {
     test('Test Failure for Fetch Trending Gifs when status code is  400',
         () async {
       when(
-        mockDio
-            .get<Map<String, dynamic>>(ApiConfig.trendingGifs(apiKey: apikey,offset: 0,language: GiphyLanguage.English)),
+        mockDio.get<Map<String, dynamic>>(ApiConfig.trendingGifs(
+            apiKey: apikey, offset: 0, language: GiphyLanguage.English)),
       ).thenAnswer(
         (_) async => Response(
           statusCode: 400,
           requestOptions: RequestOptions(),
         ),
       );
-      final result = await gifRepository.fetchTrendingGif(apikey: apikey,offset: 0,language: GiphyLanguage.English);
+      final result = await gifRepository.fetchTrendingGif(
+          apikey: apikey, offset: 0, language: GiphyLanguage.English);
       result.fold(
         (l) {
           expect(l, isA<String>());
@@ -218,7 +219,8 @@ void main() {
     test('Test Failure for Fetch Trending Gifs throws an exception', () async {
       when(
         mockDio.get<Map<String, dynamic>>(
-          ApiConfig.trendingGifs(apiKey: apikey,offset: 0,language: GiphyLanguage.English),
+          ApiConfig.trendingGifs(
+              apiKey: apikey, offset: 0, language: GiphyLanguage.English),
         ),
       ).thenThrow(
         DioException(
@@ -227,7 +229,8 @@ void main() {
         ),
       );
 
-      final result = await gifRepository.fetchTrendingGif(apikey: apikey,offset: 0,language: GiphyLanguage.English);
+      final result = await gifRepository.fetchTrendingGif(
+          apikey: apikey, offset: 0, language: GiphyLanguage.English);
 
       result.fold(
         (l) {
@@ -239,12 +242,13 @@ void main() {
   });
 
   group('Search Gifs', () {
-
     test('Test Successful when Searching for Gifs status code is  200',
         () async {
-
-      when(mockDio.get<Map<String, dynamic>>(
-              ApiConfig.searchGifs(apiKey: apikey,offset: 0,keyword: 'test',language: GiphyLanguage.English)))
+      when(mockDio.get<Map<String, dynamic>>(ApiConfig.searchGifs(
+              apiKey: apikey,
+              offset: 0,
+              keyword: 'test',
+              language: GiphyLanguage.English)))
           .thenAnswer(
         (_) async => Response(
           statusCode: 200,
@@ -253,7 +257,11 @@ void main() {
         ),
       );
 
-      final result = await gifRepository.searchGif(apikey: apikey,offset: 0,keyword: 'test',language: GiphyLanguage.English);
+      final result = await gifRepository.searchGif(
+          apikey: apikey,
+          offset: 0,
+          keyword: 'test',
+          language: GiphyLanguage.English);
       result.fold(
         (l) => null,
         (r) {
@@ -265,15 +273,22 @@ void main() {
     test('Test Failure for Fetch Trending Gifs when status code is  400',
         () async {
       when(
-        mockDio
-            .get<Map<String, dynamic>>(ApiConfig.searchGifs(apiKey: apikey,offset: 0,keyword: 'test',language: GiphyLanguage.English)),
+        mockDio.get<Map<String, dynamic>>(ApiConfig.searchGifs(
+            apiKey: apikey,
+            offset: 0,
+            keyword: 'test',
+            language: GiphyLanguage.English)),
       ).thenAnswer(
         (_) async => Response(
           statusCode: 400,
           requestOptions: RequestOptions(),
         ),
       );
-      final result = await gifRepository.searchGif(apikey: apikey,offset: 0,keyword: 'test',language: GiphyLanguage.English);
+      final result = await gifRepository.searchGif(
+          apikey: apikey,
+          offset: 0,
+          keyword: 'test',
+          language: GiphyLanguage.English);
       result.fold(
         (l) {
           expect(l, isA<String>());
@@ -285,7 +300,11 @@ void main() {
     test('Test Failure for Fetch Trending Gifs throws an exception', () async {
       when(
         mockDio.get<Map<String, dynamic>>(
-          ApiConfig.searchGifs(apiKey: apikey,offset: 0,keyword: 'test',language: GiphyLanguage.English),
+          ApiConfig.searchGifs(
+              apiKey: apikey,
+              offset: 0,
+              keyword: 'test',
+              language: GiphyLanguage.English),
         ),
       ).thenThrow(
         DioException(
@@ -294,7 +313,11 @@ void main() {
         ),
       );
 
-      final result = await gifRepository.searchGif(apikey: apikey,offset: 0,keyword: 'test',language: GiphyLanguage.English);
+      final result = await gifRepository.searchGif(
+          apikey: apikey,
+          offset: 0,
+          keyword: 'test',
+          language: GiphyLanguage.English);
 
       result.fold(
         (l) {

@@ -3,7 +3,7 @@ import 'package:flutter_giphy/models/giphy_data.dart';
 import 'package:flutter_giphy/models/giphy_meta.dart';
 import 'package:flutter_giphy/models/pagination.dart';
 
-class GiphyGif extends Equatable{
+class GiphyGif extends Equatable {
   const GiphyGif({
     this.data,
     this.pagination,
@@ -13,8 +13,10 @@ class GiphyGif extends Equatable{
   factory GiphyGif.fromJson(Map<String, dynamic> json) => GiphyGif(
         data: json["data"] == null
             ? []
-            : List<GiphyData>.from((json["data"] as List<dynamic>)
-                .map((x) => GiphyData.fromJson(x as Map<String, dynamic>)),),
+            : List<GiphyData>.from(
+                (json["data"] as List<dynamic>)
+                    .map((x) => GiphyData.fromJson(x as Map<String, dynamic>)),
+              ),
         pagination: json["pagination"] == null
             ? null
             : Pagination.fromJson(json["pagination"] as Map<String, dynamic>),

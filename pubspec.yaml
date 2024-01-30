@@ -1,7 +1,8 @@
 name: flutter_giphy
-description: A Flutter SDK to extend Giphy assets to flutter apps
+description: Fetch,Search and Share Gifs,Stickers(coming soon) from Giphy in your Flutter app.
 version: 0.0.1
-homepage:
+homepage: https://github.com/donkizzy/flutter_giphy
+repository: https://github.com/donkizzy/flutter_giphy
 
 environment:
   sdk: '>=3.1.0 <4.0.0'
@@ -37,8 +38,8 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-   assets:
-     - .env
+  assets:
+    - .env
   #   - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see

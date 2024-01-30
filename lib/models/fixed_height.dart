@@ -1,5 +1,4 @@
 class FixedHeight {
-
   FixedHeight({
     this.height,
     this.width,
@@ -14,17 +13,17 @@ class FixedHeight {
   });
 
   factory FixedHeight.fromJson(Map<String, dynamic> json) => FixedHeight(
-    height: json['height'] as String?,
-    width: json['width'] as String?,
-    size: json['size'] as String?,
-    url: json['url'] as String?,
-    mp4Size: json['mp4_size'] as String?,
-    mp4: json['mp4'] as String?,
-    webpSize: json['webp_size'] as String?,
-    webp: json['webp'] as String?,
-    frames: json['frames'] as String?,
-    hash: json['hash'] as String?,
-  );
+        height: json['height'] as String?,
+        width: json['width'] as String?,
+        size: json['size'] as String?,
+        url: json['url'] as String?,
+        mp4Size: json['mp4_size'] as String?,
+        mp4: json['mp4'] as String?,
+        webpSize: json['webp_size'] as String?,
+        webp: json['webp'] as String?,
+        frames: json['frames'] as String?,
+        hash: json['hash'] as String?,
+      );
   final String? height;
   final String? width;
   final String? size;
@@ -37,15 +36,15 @@ class FixedHeight {
   final String? hash;
 
   Map<String, dynamic> toJson() => {
-    'height': height,
-    'width': width,
-    'size': size,
-    'url': url,
-    'mp4_size': mp4Size,
-    'mp4': mp4,
-    'webp_size': webpSize,
-    'webp': webp,
-    'frames': frames,
-    'hash': hash,
-  };
+        'height': height,
+        'width': width,
+        'size': size,
+        'url': url,
+        'mp4_size': mp4Size,
+        'mp4': mp4,
+        'webp_size': webpSize,
+        'webp': webp,
+        'frames': frames,
+        'hash': hash,
+      };
 }

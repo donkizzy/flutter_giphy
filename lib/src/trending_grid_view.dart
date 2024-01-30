@@ -118,6 +118,9 @@ class _TrendingGridViewState extends State<TrendingGridView> {
     bool isFirstFetch = true,
   }) {
     widget.giphyCubit.fetchTrendingGif(
-        apikey: apiKey, offset: offset, isFirstFetch: isFirstFetch,language: widget.language);
+        apikey: apiKey,
+        offset: offset,
+        isFirstFetch: isFirstFetch,
+        language: widget.language);
   }
 }

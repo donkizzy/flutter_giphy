@@ -10,13 +10,14 @@ class GifGridView extends StatefulWidget {
   final VoidCallback? onEndOfPage;
 
   final Widget? loadingWidget;
-  final ValueChanged<GiphyData> onSelected ;
+  final ValueChanged<GiphyData> onSelected;
 
   const GifGridView(
       {super.key,
       required this.gifs,
       this.onEndOfPage,
-       this.loadingWidget, required this.onSelected});
+      this.loadingWidget,
+      required this.onSelected});
 
   @override
   State<GifGridView> createState() => _GifGridViewState();
@@ -26,7 +27,7 @@ class _GifGridViewState extends State<GifGridView> {
   @override
   Widget build(BuildContext context) {
     return LazyLoadScrollView(
-      onEndOfPage:  widget.onEndOfPage ?? () {},
+      onEndOfPage: widget.onEndOfPage ?? () {},
       child: MasonryGridView.count(
         crossAxisCount: 2,
         mainAxisSpacing: 4,
@@ -36,7 +37,7 @@ class _GifGridViewState extends State<GifGridView> {
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: (){
+            onTap: () {
               widget.onSelected.call(widget.gifs[index]);
               Navigator.pop(context);
             },
@@ -59,8 +60,7 @@ class _GifGridViewState extends State<GifGridView> {
                       ),
                     );
               },
-              errorWidget: (context, url, error) =>
-              const Icon(Icons.error),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           );
         },

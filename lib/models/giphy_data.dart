@@ -3,7 +3,7 @@ import 'package:flutter_giphy/models/analytics.dart';
 import 'package:flutter_giphy/models/giphy_images.dart';
 import 'package:flutter_giphy/models/giphy_user.dart';
 
-class GiphyData extends Equatable{
+class GiphyData extends Equatable {
   const GiphyData({
     this.type,
     this.id,
@@ -127,5 +127,6 @@ class GiphyData extends Equatable{
         images,
         user,
         analyticsResponsePayload,
-        analytics,];
+        analytics,
+      ];
 }

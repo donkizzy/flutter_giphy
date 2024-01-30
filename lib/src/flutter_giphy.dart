@@ -9,8 +9,6 @@ import 'package:flutter_giphy/utils/language_code.dart';
 
 /// Flutter Giphy makes it easy fou you be use Giphy in your flutter app
 class FlutterGiphy {
-
-
   // TextEditingController for the search field
   static final searchController = TextEditingController();
 

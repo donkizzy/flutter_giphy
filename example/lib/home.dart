@@ -10,7 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  GiphyData? selectedGift;
+  GiphyData? selectedGif;
   List<GiphyData> fetchTrendingGifs = [];
 
   @override
@@ -26,8 +26,8 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Home'),
       ),
       body: Column(children: [
-        if (selectedGift != null)
-          Image.network(selectedGift?.images?.original?.url ?? ''),
+        if (selectedGif != null)
+          Image.network(selectedGif?.images?.original?.url ?? ''),
         Center(
             child: MaterialButton(
           onPressed: () {
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                 apikey: dotenv.env['API_KEY'] ?? '',
                 onSelected: (GiphyData value) {
                   setState(() {
-                    selectedGift = value;
+                    selectedGif = value;
                   });
                 });
           },
@@ -73,9 +73,7 @@ class _HomePageState extends State<HomePage> {
                   fetchTrendingGifs[index].images?.original?.url ?? '');
             },
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-                crossAxisCount: 2),
+                mainAxisSpacing: 10, crossAxisSpacing: 10, crossAxisCount: 2),
           ),
         )
       ]),

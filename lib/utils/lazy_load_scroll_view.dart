@@ -59,9 +59,9 @@ class LazyLoadScrollViewState extends State<LazyLoadScrollView> {
     if (widget.scrollDirection == notification.metrics.axis) {
       if (notification is ScrollUpdateNotification) {
         if (notification.metrics.maxScrollExtent >
-            notification.metrics.pixels &&
+                notification.metrics.pixels &&
             notification.metrics.maxScrollExtent -
-                notification.metrics.pixels <=
+                    notification.metrics.pixels <=
                 widget.scrollOffset) {
           _loadMore();
         }
