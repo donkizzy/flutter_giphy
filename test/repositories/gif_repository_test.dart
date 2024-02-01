@@ -20,8 +20,7 @@ void main() {
       {
         "type": "gif",
         "id": "DDkZETHtyhWNXOlb4R",
-        "url":
-            "https://giphy.com/gifs/netflix-bayard-rustin-movie-netflix-DDkZETHtyhWNXOlb4R",
+        "url": "https://giphy.com/gifs/netflix-bayard-rustin-movie-netflix-DDkZETHtyhWNXOlb4R",
         "slug": "netflix-bayard-rustin-movie-netflix-DDkZETHtyhWNXOlb4R",
         "bitly_gif_url": "https://gph.is/g/4bnmbrv",
         "bitly_url": "https://gph.is/g/4bnmbrv",
@@ -126,8 +125,7 @@ void main() {
           },
         },
         "user": {
-          "avatar_url":
-              "https://media0.giphy.com/avatars/netflix/4oBuhqPAhFem.png",
+          "avatar_url": "https://media0.giphy.com/avatars/netflix/4oBuhqPAhFem.png",
           "banner_image": "",
           "banner_url": "",
           "profile_url": "https://giphy.com/netflix/",
@@ -173,10 +171,9 @@ void main() {
   });
 
   group('Fetch Trending Gifs', () {
-    test('Test Success for Fetch Trending Gifs when status code is  200',
-        () async {
-      when(mockDio.get<Map<String, dynamic>>(ApiConfig.trendingGifs(
-              apiKey: apikey, offset: 0, language: GiphyLanguage.English)))
+    test('Test Success for Fetch Trending Gifs when status code is  200', () async {
+      when(mockDio.get<Map<String, dynamic>>(
+              ApiConfig.trendingGifs(apiKey: apikey, offset: 0, language: GiphyLanguage.English)))
           .thenAnswer(
         (_) async => Response(
           statusCode: 200,
@@ -185,8 +182,7 @@ void main() {
         ),
       );
 
-      final result = await gifRepository.fetchTrendingGif(
-          apikey: apikey, offset: 0, language: GiphyLanguage.English);
+      final result = await gifRepository.fetchTrendingGif(apikey: apikey, offset: 0, language: GiphyLanguage.English);
       result.fold(
         (l) => null,
         (r) {
@@ -195,19 +191,17 @@ void main() {
       );
     });
 
-    test('Test Failure for Fetch Trending Gifs when status code is  400',
-        () async {
+    test('Test Failure for Fetch Trending Gifs when status code is  400', () async {
       when(
-        mockDio.get<Map<String, dynamic>>(ApiConfig.trendingGifs(
-            apiKey: apikey, offset: 0, language: GiphyLanguage.English)),
+        mockDio.get<Map<String, dynamic>>(
+            ApiConfig.trendingGifs(apiKey: apikey, offset: 0, language: GiphyLanguage.English)),
       ).thenAnswer(
         (_) async => Response(
           statusCode: 400,
           requestOptions: RequestOptions(),
         ),
       );
-      final result = await gifRepository.fetchTrendingGif(
-          apikey: apikey, offset: 0, language: GiphyLanguage.English);
+      final result = await gifRepository.fetchTrendingGif(apikey: apikey, offset: 0, language: GiphyLanguage.English);
       result.fold(
         (l) {
           expect(l, isA<String>());
@@ -219,8 +213,7 @@ void main() {
     test('Test Failure for Fetch Trending Gifs throws an exception', () async {
       when(
         mockDio.get<Map<String, dynamic>>(
-          ApiConfig.trendingGifs(
-              apiKey: apikey, offset: 0, language: GiphyLanguage.English),
+          ApiConfig.trendingGifs(apiKey: apikey, offset: 0, language: GiphyLanguage.English),
         ),
       ).thenThrow(
         DioException(
@@ -229,8 +222,7 @@ void main() {
         ),
       );
 
-      final result = await gifRepository.fetchTrendingGif(
-          apikey: apikey, offset: 0, language: GiphyLanguage.English);
+      final result = await gifRepository.fetchTrendingGif(apikey: apikey, offset: 0, language: GiphyLanguage.English);
 
       result.fold(
         (l) {
@@ -242,13 +234,9 @@ void main() {
   });
 
   group('Search Gifs', () {
-    test('Test Successful when Searching for Gifs status code is  200',
-        () async {
-      when(mockDio.get<Map<String, dynamic>>(ApiConfig.searchGifs(
-              apiKey: apikey,
-              offset: 0,
-              keyword: 'test',
-              language: GiphyLanguage.English)))
+    test('Test Successful when Searching for Gifs status code is  200', () async {
+      when(mockDio.get<Map<String, dynamic>>(
+              ApiConfig.searchGifs(apiKey: apikey, offset: 0, keyword: 'test', language: GiphyLanguage.English)))
           .thenAnswer(
         (_) async => Response(
           statusCode: 200,
@@ -257,11 +245,8 @@ void main() {
         ),
       );
 
-      final result = await gifRepository.searchGif(
-          apikey: apikey,
-          offset: 0,
-          keyword: 'test',
-          language: GiphyLanguage.English);
+      final result =
+          await gifRepository.searchGif(apikey: apikey, offset: 0, keyword: 'test', language: GiphyLanguage.English);
       result.fold(
         (l) => null,
         (r) {
@@ -270,25 +255,18 @@ void main() {
       );
     });
 
-    test('Test Failure for Fetch Trending Gifs when status code is  400',
-        () async {
+    test('Test Failure for Fetch Trending Gifs when status code is  400', () async {
       when(
-        mockDio.get<Map<String, dynamic>>(ApiConfig.searchGifs(
-            apiKey: apikey,
-            offset: 0,
-            keyword: 'test',
-            language: GiphyLanguage.English)),
+        mockDio.get<Map<String, dynamic>>(
+            ApiConfig.searchGifs(apiKey: apikey, offset: 0, keyword: 'test', language: GiphyLanguage.English)),
       ).thenAnswer(
         (_) async => Response(
           statusCode: 400,
           requestOptions: RequestOptions(),
         ),
       );
-      final result = await gifRepository.searchGif(
-          apikey: apikey,
-          offset: 0,
-          keyword: 'test',
-          language: GiphyLanguage.English);
+      final result =
+          await gifRepository.searchGif(apikey: apikey, offset: 0, keyword: 'test', language: GiphyLanguage.English);
       result.fold(
         (l) {
           expect(l, isA<String>());
@@ -300,11 +278,7 @@ void main() {
     test('Test Failure for Fetch Trending Gifs throws an exception', () async {
       when(
         mockDio.get<Map<String, dynamic>>(
-          ApiConfig.searchGifs(
-              apiKey: apikey,
-              offset: 0,
-              keyword: 'test',
-              language: GiphyLanguage.English),
+          ApiConfig.searchGifs(apiKey: apikey, offset: 0, keyword: 'test', language: GiphyLanguage.English),
         ),
       ).thenThrow(
         DioException(
@@ -313,11 +287,8 @@ void main() {
         ),
       );
 
-      final result = await gifRepository.searchGif(
-          apikey: apikey,
-          offset: 0,
-          keyword: 'test',
-          language: GiphyLanguage.English);
+      final result =
+          await gifRepository.searchGif(apikey: apikey, offset: 0, keyword: 'test', language: GiphyLanguage.English);
 
       result.fold(
         (l) {

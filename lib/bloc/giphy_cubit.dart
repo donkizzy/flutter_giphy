@@ -11,16 +11,12 @@ class GiphyCubit extends Cubit<GiphyState> {
   final GifRepository gifRepository;
 
   Future<void> fetchTrendingGif(
-      {required String apikey,
-      required int offset,
-      required bool isFirstFetch,
-      required String language}) async {
+      {required String apikey, required int offset, required bool isFirstFetch, required String language}) async {
     try {
       if (isFirstFetch) {
         emit(GiphyLoading());
       }
-      final response = await gifRepository.fetchTrendingGif(
-          apikey: apikey, offset: offset, language: language);
+      final response = await gifRepository.fetchTrendingGif(apikey: apikey, offset: offset, language: language);
       response.fold(
         (l) => emit(GiphyError(error: l)),
         (r) => emit(GiphySuccess(gif: r)),
@@ -40,11 +36,16 @@ class GiphyCubit extends Cubit<GiphyState> {
       if (isFirstFetch) {
         emit(GiphyLoading());
       }
-      final response = await gifRepository.searchGif(
-          apikey: apikey, offset: offset, keyword: keyword, language: language);
+      final response =
+          await gifRepository.searchGif(apikey: apikey, offset: offset, keyword: keyword, language: language);
       response.fold(
         (l) => emit(SearchGifError(error: l)),
-        (r) => emit(SearchGifSuccess(gif: r)),
+        (r) {
+          if (isFirstFetch) {
+            emit(GiphyInitial());
+          }
+          emit(SearchGifSuccess(gif: r));
+        },
       );
     } catch (e) {
       emit(SearchGifError(error: e.toString()));

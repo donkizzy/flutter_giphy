@@ -12,9 +12,7 @@ class GifImages {
   });
 
   factory GifImages.fromJson(Map<String, dynamic> json) => GifImages(
-        original: json['original'] == null
-            ? null
-            : FixedHeight.fromJson(json['original'] as Map<String, dynamic>),
+        original: json['original'] == null ? null : FixedHeight.fromJson(json['original'] as Map<String, dynamic>),
         fixedHeight: json['fixed_height'] == null
             ? null
             : FixedHeight.fromJson(
@@ -30,9 +28,8 @@ class GifImages {
             : FixedHeight.fromJson(
                 json['fixed_height_small'] as Map<String, dynamic>,
               ),
-        fixedWidth: json['fixed_width'] == null
-            ? null
-            : FixedHeight.fromJson(json['fixed_width'] as Map<String, dynamic>),
+        fixedWidth:
+            json['fixed_width'] == null ? null : FixedHeight.fromJson(json['fixed_width'] as Map<String, dynamic>),
         fixedWidthDownsampled: json['fixed_width_downsampled'] == null
             ? null
             : FixedHeight.fromJson(

@@ -37,8 +37,9 @@ class _SearchGridViewState extends State<SearchGridView> {
 
   @override
   void initState() {
+    debouncer = Debouncer(milliseconds: 500);
     widget.searchController.addListener(() {
-      search(widget.apikey, keyword: widget.searchController.text);
+      search(widget.apikey, keyword: widget.searchController.text, isFirstFetch: true);
     });
     super.initState();
   }
@@ -50,7 +51,8 @@ class _SearchGridViewState extends State<SearchGridView> {
       buildWhen: (previous, current) {
         return current is GiphyLoading ||
             current is SearchGifSuccess ||
-            current is SearchGifError;
+            current is SearchGifError ||
+            current is GiphyInitial;
       },
       builder: (context, state) {
         if (state is GiphyLoading) {
@@ -63,8 +65,7 @@ class _SearchGridViewState extends State<SearchGridView> {
             itemBuilder: (context, index) {
               return Shimmer.fromColors(
                 baseColor: Colors.grey.withOpacity(0.2),
-                highlightColor:
-                    Theme.of(context).colorScheme.outline.withOpacity(0.1),
+                highlightColor: Theme.of(context).colorScheme.outline.withOpacity(0.1),
                 child: Container(
                   width: double.infinity,
                   height: 150,
@@ -88,8 +89,7 @@ class _SearchGridViewState extends State<SearchGridView> {
                       height: 10,
                     ),
                     MaterialButton(
-                      onPressed: () => search(widget.apikey,
-                          keyword: widget.searchController.text),
+                      onPressed: () => search(widget.apikey, keyword: widget.searchController.text),
                       child: const Text('Retry'),
                     )
                   ],
@@ -101,9 +101,7 @@ class _SearchGridViewState extends State<SearchGridView> {
             gifs: searchGifs,
             onEndOfPage: () {
               search(widget.apikey,
-                  offset: searchGifs.length,
-                  isFirstFetch: false,
-                  keyword: widget.searchController.text);
+                  offset: searchGifs.length, isFirstFetch: false, keyword: widget.searchController.text);
             },
             loadingWidget: widget.loadingWidget,
             onSelected: widget.onSelected,
@@ -112,6 +110,10 @@ class _SearchGridViewState extends State<SearchGridView> {
         return const SizedBox.shrink();
       },
       listener: (BuildContext context, GiphyState state) {
+        if (state is GiphyInitial) {
+          searchGifs.clear();
+        }
+
         if (state is SearchGifSuccess) {
           searchGifs.addAll(state.gif.data ?? []);
         }
@@ -119,9 +121,7 @@ class _SearchGridViewState extends State<SearchGridView> {
     );
   }
 
-  void search(String apiKey,
-      {int offset = 0, required String keyword, bool isFirstFetch = true}) {
-    debouncer = Debouncer(milliseconds: 500);
+  void search(String apiKey, {int offset = 0, required String keyword, bool isFirstFetch = true}) {
     debouncer.run(() {
       widget.giphyCubit.searchGif(
         apikey: apiKey,

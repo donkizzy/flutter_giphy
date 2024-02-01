@@ -44,9 +44,7 @@ class _TrendingGridViewState extends State<TrendingGridView> {
     return BlocConsumer<GiphyCubit, GiphyState>(
       bloc: widget.giphyCubit,
       buildWhen: (previous, current) {
-        return current is GiphyLoading ||
-            current is GiphySuccess ||
-            current is GiphyError;
+        return current is GiphyLoading || current is GiphySuccess || current is GiphyError;
       },
       builder: (context, state) {
         if (state is GiphyLoading) {
@@ -59,8 +57,7 @@ class _TrendingGridViewState extends State<TrendingGridView> {
             itemBuilder: (context, index) {
               return Shimmer.fromColors(
                 baseColor: Colors.grey.withOpacity(0.2),
-                highlightColor:
-                    Theme.of(context).colorScheme.outline.withOpacity(0.1),
+                highlightColor: Theme.of(context).colorScheme.outline.withOpacity(0.1),
                 child: Container(
                   width: double.infinity,
                   height: 150,
@@ -95,8 +92,7 @@ class _TrendingGridViewState extends State<TrendingGridView> {
           return GifGridView(
             gifs: trendingGifs,
             onEndOfPage: () {
-              loadMore(widget.apikey,
-                  offset: trendingGifs.length, isFirstFetch: false);
+              loadMore(widget.apikey, offset: trendingGifs.length, isFirstFetch: false);
             },
             loadingWidget: widget.loadingWidget,
             onSelected: widget.onSelected,
@@ -117,10 +113,7 @@ class _TrendingGridViewState extends State<TrendingGridView> {
     int offset = 0,
     bool isFirstFetch = true,
   }) {
-    widget.giphyCubit.fetchTrendingGif(
-        apikey: apiKey,
-        offset: offset,
-        isFirstFetch: isFirstFetch,
-        language: widget.language);
+    widget.giphyCubit
+        .fetchTrendingGif(apikey: apiKey, offset: offset, isFirstFetch: isFirstFetch, language: widget.language);
   }
 }

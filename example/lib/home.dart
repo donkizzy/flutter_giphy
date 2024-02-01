@@ -26,8 +26,7 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Home'),
       ),
       body: Column(children: [
-        if (selectedGif != null)
-          Image.network(selectedGif?.images?.original?.url ?? ''),
+        if (selectedGif != null) Image.network(selectedGif?.images?.original?.url ?? ''),
         Center(
             child: MaterialButton(
           onPressed: () {
@@ -69,8 +68,7 @@ class _HomePageState extends State<HomePage> {
             itemCount: fetchTrendingGifs.length,
             padding: const EdgeInsets.all(20),
             itemBuilder: (context, index) {
-              return Image.network(
-                  fetchTrendingGifs[index].images?.original?.url ?? '');
+              return Image.network(fetchTrendingGifs[index].images?.original?.url ?? '');
             },
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 mainAxisSpacing: 10, crossAxisSpacing: 10, crossAxisCount: 2),

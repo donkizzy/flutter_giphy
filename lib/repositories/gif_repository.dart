@@ -17,13 +17,10 @@ class GifRepository {
   final Dio _dio;
 
   Future<Either<String, GiphyGif>> fetchTrendingGif(
-      {required String apikey,
-      required int offset,
-      required String language}) async {
+      {required String apikey, required int offset, required String language}) async {
     try {
       final response = await _dio.get<Map<String, dynamic>>(
-        ApiConfig.trendingGifs(
-            apiKey: apikey, offset: offset, language: language),
+        ApiConfig.trendingGifs(apiKey: apikey, offset: offset, language: language),
       );
       if (response.statusCode == 200 && response.data != null) {
         final giphyGif = GiphyGif.fromJson(
@@ -40,17 +37,10 @@ class GifRepository {
   }
 
   Future<Either<String, GiphyGif>> searchGif(
-      {required String apikey,
-      required int offset,
-      required String keyword,
-      required String language}) async {
+      {required String apikey, required int offset, required String keyword, required String language}) async {
     try {
       final response = await _dio.get<Map<String, dynamic>>(
-        ApiConfig.searchGifs(
-            apiKey: apikey,
-            offset: offset,
-            keyword: keyword,
-            language: language),
+        ApiConfig.searchGifs(apiKey: apikey, offset: offset, keyword: keyword, language: language),
       );
       if (response.statusCode == 200 && response.data != null) {
         final giphyGif = GiphyGif.fromJson(

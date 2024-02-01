@@ -19,8 +19,7 @@ class FlutterGiphy {
   static final GifRepository _gifRepository = GifRepository(dio: Dio());
 
   // GiphyCubit instance for managing state
-  static final GiphyCubit _giphyCubit =
-      GiphyCubit(gifRepository: _gifRepository);
+  static final GiphyCubit _giphyCubit = GiphyCubit(gifRepository: _gifRepository);
 
   /// Displays a bottom sheet with a gif picker
   ///
@@ -41,7 +40,7 @@ class FlutterGiphy {
     Widget? errorWidget,
     Color backgroundColor = Colors.white,
     required final ValueChanged<GiphyData> onSelected,
-    String language = GiphyLanguage.Arabic,
+    String language = GiphyLanguage.English,
   }) {
     showModalBottomSheet<Widget>(
       context: context,
@@ -52,8 +51,7 @@ class FlutterGiphy {
       ),
       builder: (BuildContext context) {
         return Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Column(
             children: [
               TextFormField(

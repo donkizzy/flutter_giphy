@@ -5,52 +5,39 @@ import 'package:flutter_giphy/utils/lazy_load_scroll_view.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:shimmer/shimmer.dart';
 
-class GifGridView extends StatefulWidget {
+class GifGridView extends StatelessWidget {
   final List<GiphyData> gifs;
   final VoidCallback? onEndOfPage;
 
   final Widget? loadingWidget;
   final ValueChanged<GiphyData> onSelected;
 
-  const GifGridView(
-      {super.key,
-      required this.gifs,
-      this.onEndOfPage,
-      this.loadingWidget,
-      required this.onSelected});
+  const GifGridView({super.key, required this.gifs, this.onEndOfPage, this.loadingWidget, required this.onSelected});
 
-  @override
-  State<GifGridView> createState() => _GifGridViewState();
-}
-
-class _GifGridViewState extends State<GifGridView> {
   @override
   Widget build(BuildContext context) {
     return LazyLoadScrollView(
-      onEndOfPage: widget.onEndOfPage ?? () {},
+      onEndOfPage: onEndOfPage ?? () {},
       child: MasonryGridView.count(
         crossAxisCount: 2,
         mainAxisSpacing: 4,
         crossAxisSpacing: 4,
         padding: const EdgeInsets.all(10),
-        itemCount: widget.gifs.length,
+        itemCount: gifs.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              widget.onSelected.call(widget.gifs[index]);
+              onSelected.call(gifs[index]);
               Navigator.pop(context);
             },
             child: CachedNetworkImage(
-              imageUrl: widget.gifs[index].images?.original?.url ?? '',
+              imageUrl: gifs[index].images?.original?.url ?? '',
               placeholder: (context, url) {
-                return widget.loadingWidget ??
+                return loadingWidget ??
                     Shimmer.fromColors(
                       baseColor: Colors.grey.withOpacity(0.2),
-                      highlightColor: Theme.of(context)
-                          .colorScheme
-                          .outline
-                          .withOpacity(0.1),
+                      highlightColor: Theme.of(context).colorScheme.outline.withOpacity(0.1),
                       child: Container(
                         width: double.infinity,
                         height: 150,
