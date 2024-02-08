@@ -6,7 +6,7 @@ repository: https://github.com/donkizzy/flutter_giphy
 
 environment:
   sdk: '>=3.1.0 <4.0.0'
-  flutter: ">=1.17.0"
+  flutter: ">=1.20.0"
 
 dependencies:
   cached_network_image: ^3.3.0
@@ -36,6 +36,14 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.flutter.giphy.example
+        pluginClass: FlutterGiphy
+      ios:
+        pluginClass: FlutterGiphy
+
 
   # To add assets to your package, add an assets section, like this:
   assets:

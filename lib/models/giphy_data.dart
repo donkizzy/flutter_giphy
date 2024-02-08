@@ -44,12 +44,20 @@ class GiphyData extends Equatable {
         sourceTld: json['source_tld'] as String?,
         sourcePostUrl: json['source_post_url'] as String?,
         isSticker: json['is_sticker'] as int?,
-        importDatetime: json['import_datetime'] == null ? null : DateTime.parse(json['import_datetime'] as String),
+        importDatetime: json['import_datetime'] == null
+            ? null
+            : DateTime.parse(json['import_datetime'] as String),
         trendingDatetime: json['trending_datetime'] as String?,
-        images: json['images'] == null ? null : GifImages.fromJson(json['images'] as Map<String, dynamic>),
-        user: json['user'] == null ? null : User.fromJson(json['user'] as Map<String, dynamic>),
+        images: json['images'] == null
+            ? null
+            : GifImages.fromJson(json['images'] as Map<String, dynamic>),
+        user: json['user'] == null
+            ? null
+            : User.fromJson(json['user'] as Map<String, dynamic>),
         analyticsResponsePayload: json['analytics_response_payload'] as String?,
-        analytics: json['analytics'] == null ? null : Analytics.fromJson(json['analytics'] as Map<String, dynamic>),
+        analytics: json['analytics'] == null
+            ? null
+            : Analytics.fromJson(json['analytics'] as Map<String, dynamic>),
       );
   final String? type;
   final String? id;

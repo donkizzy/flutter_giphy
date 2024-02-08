@@ -24,31 +24,45 @@ void main() {
   });
   group('Fetch Trending gifs', () {
     test('Should return a GiphyGif object when successful', () async {
-      when(gifRepository.fetchTrendingGif(apikey: apikey, offset: 0, language: GiphyLanguage.English))
+      when(gifRepository.fetchTrendingGif(
+              apikey: apikey, offset: 0, language: GiphyLanguage.English))
           .thenAnswer((_) async => Right(GiphyGif()));
       final response = await giphy.fetchTrendingGif();
       expect(response, isA<GiphyGif>());
     });
 
-    test('Should be null when there is an error', () => () async {
-      when(gifRepository.fetchTrendingGif(apikey: apikey, offset: 0, language: GiphyLanguage.English))
-          .thenAnswer((_) async => Left('Error'));
-      final response = await giphy.fetchTrendingGif();
-      expect(response, isA<GiphyGif>());
-      expect(response,  null);
-    });
+    test(
+        'Should be null when there is an error',
+        () => () async {
+              when(gifRepository.fetchTrendingGif(
+                      apikey: apikey,
+                      offset: 0,
+                      language: GiphyLanguage.English))
+                  .thenAnswer((_) async => Left('Error'));
+              final response = await giphy.fetchTrendingGif();
+              expect(response, isA<GiphyGif>());
+              expect(response, null);
+            });
   });
 
   group('Search Gifs', () {
     test('Should return a GiphyGif object', () async {
-      when(gifRepository.searchGif(apikey: apikey, offset: 0, language: GiphyLanguage.English, keyword: 'test'))
+      when(gifRepository.searchGif(
+              apikey: apikey,
+              offset: 0,
+              language: GiphyLanguage.English,
+              keyword: 'test'))
           .thenAnswer((_) async => Right(GiphyGif()));
       final response = await giphy.searchGif(keyword: 'test');
       expect(response, isA<GiphyGif>());
     });
 
-test('Should be null when there is an error', () async {
-      when(gifRepository.searchGif(apikey: apikey, offset: 0, language: GiphyLanguage.English, keyword: 'test'))
+    test('Should be null when there is an error', () async {
+      when(gifRepository.searchGif(
+              apikey: apikey,
+              offset: 0,
+              language: GiphyLanguage.English,
+              keyword: 'test'))
           .thenAnswer((_) async => Left('Error'));
       final response = await giphy.searchGif(keyword: 'test');
       expect(response, isA<GiphyGif>());

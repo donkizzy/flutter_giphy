@@ -20,16 +20,25 @@ void main() {
       'emits [GiphyLoading, GiphySuccess] when fetchTrendingGif is successful',
       build: () {
         when(mockGifRepository.fetchTrendingGif(
-                apikey: anyNamed('apikey'), offset: anyNamed('offset'), language: GiphyLanguage.English))
-            .thenAnswer(
-                (_) async => Right(GiphyGif(data: [], meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))));
+                apikey: anyNamed('apikey'),
+                offset: anyNamed('offset'),
+                language: GiphyLanguage.English))
+            .thenAnswer((_) async => Right(GiphyGif(
+                data: [],
+                meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))));
         return GiphyCubit(gifRepository: mockGifRepository);
       },
       act: (cubit) => cubit.fetchTrendingGif(
-          apikey: 'test_api_key', offset: 0, isFirstFetch: true, language: GiphyLanguage.English),
+          apikey: 'test_api_key',
+          offset: 0,
+          isFirstFetch: true,
+          language: GiphyLanguage.English),
       expect: () => <GiphyState>[
         GiphyLoading(),
-        GiphySuccess(gif: GiphyGif(data: [], meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))),
+        GiphySuccess(
+            gif: GiphyGif(
+                data: [],
+                meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))),
       ],
     );
 
@@ -37,15 +46,24 @@ void main() {
       'emits [GiphyLoading, GiphySuccess] when fetchTrendingGif is fetching more gifs',
       build: () {
         when(mockGifRepository.fetchTrendingGif(
-                apikey: anyNamed('apikey'), offset: anyNamed('offset'), language: GiphyLanguage.English))
-            .thenAnswer(
-                (_) async => Right(GiphyGif(data: [], meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))));
+                apikey: anyNamed('apikey'),
+                offset: anyNamed('offset'),
+                language: GiphyLanguage.English))
+            .thenAnswer((_) async => Right(GiphyGif(
+                data: [],
+                meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))));
         return GiphyCubit(gifRepository: mockGifRepository);
       },
       act: (cubit) => cubit.fetchTrendingGif(
-          apikey: 'test_api_key', offset: 0, isFirstFetch: false, language: GiphyLanguage.English),
+          apikey: 'test_api_key',
+          offset: 0,
+          isFirstFetch: false,
+          language: GiphyLanguage.English),
       expect: () => <GiphyState>[
-        GiphySuccess(gif: GiphyGif(data: [], meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))),
+        GiphySuccess(
+            gif: GiphyGif(
+                data: [],
+                meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))),
       ],
     );
 
@@ -53,12 +71,17 @@ void main() {
       'emits [GiphyLoading, GiphyError] when fetchTrendingGif fails',
       build: () {
         when(mockGifRepository.fetchTrendingGif(
-                apikey: anyNamed('apikey'), offset: anyNamed('offset'), language: GiphyLanguage.English))
+                apikey: anyNamed('apikey'),
+                offset: anyNamed('offset'),
+                language: GiphyLanguage.English))
             .thenAnswer((_) async => Left('Error'));
         return GiphyCubit(gifRepository: mockGifRepository);
       },
       act: (cubit) => cubit.fetchTrendingGif(
-          apikey: 'test_api_key', offset: 0, isFirstFetch: true, language: GiphyLanguage.English),
+          apikey: 'test_api_key',
+          offset: 0,
+          isFirstFetch: true,
+          language: GiphyLanguage.English),
       expect: () => <GiphyState>[
         GiphyLoading(),
         GiphyError(error: 'Error'),
@@ -75,8 +98,9 @@ void main() {
                 offset: anyNamed('offset'),
                 keyword: anyNamed('keyword'),
                 language: anyNamed('language')))
-            .thenAnswer(
-                (_) async => Right(GiphyGif(data: [], meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))));
+            .thenAnswer((_) async => Right(GiphyGif(
+                data: [],
+                meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))));
         return GiphyCubit(gifRepository: mockGifRepository);
       },
       act: (cubit) => cubit.searchGif(
@@ -88,7 +112,10 @@ void main() {
       expect: () => <GiphyState>[
         GiphyLoading(),
         GiphyInitial(),
-        SearchGifSuccess(gif: GiphyGif(data: [], meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))),
+        SearchGifSuccess(
+            gif: GiphyGif(
+                data: [],
+                meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))),
       ],
     );
 
@@ -100,8 +127,9 @@ void main() {
                 offset: anyNamed('offset'),
                 keyword: anyNamed('keyword'),
                 language: GiphyLanguage.English))
-            .thenAnswer(
-                (_) async => Right(GiphyGif(data: [], meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))));
+            .thenAnswer((_) async => Right(GiphyGif(
+                data: [],
+                meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))));
         return GiphyCubit(gifRepository: mockGifRepository);
       },
       act: (cubit) => cubit.searchGif(
@@ -111,7 +139,10 @@ void main() {
           isFirstFetch: false,
           language: GiphyLanguage.English),
       expect: () => <GiphyState>[
-        SearchGifSuccess(gif: GiphyGif(data: [], meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))),
+        SearchGifSuccess(
+            gif: GiphyGif(
+                data: [],
+                meta: Meta(status: 200, msg: 'OK', responseId: 'test_id'))),
       ],
     );
 

@@ -12,9 +12,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   GiphyData? selectedGif;
   List<GiphyData> fetchTrendingGifs = [];
+  late FlutterGiphy _flutterGiphy;
 
   @override
   void initState() {
+    _flutterGiphy = FlutterGiphy(
+      apiKey: dotenv.env['API_KEY'] ?? '',
+    );
     fetchTrendingGif();
     super.initState();
   }
@@ -26,24 +30,26 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Home'),
       ),
       body: Column(children: [
-        if (selectedGif != null) Image.network(selectedGif?.images?.original?.url ?? ''),
+        if (selectedGif != null)
+          Image.network(selectedGif?.images?.original?.url ?? ''),
         Center(
             child: MaterialButton(
           onPressed: () {
-            FlutterGiphy.showGifPicker(
+            _flutterGiphy.showGifPicker(
                 context: context,
                 searchBarDecoration: InputDecoration(
                   hintText: 'Search Gif',
                   prefixIcon: const Icon(
                     Icons.search,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   suffixIcon: InkWell(
                       onTap: () {
-                        FlutterGiphy.clearSearch();
+                        _flutterGiphy.clearSearch();
+                        Navigator.pop(context);
                       },
                       child: const Icon(
                         Icons.clear,
@@ -66,12 +72,13 @@ class _HomePageState extends State<HomePage> {
           child: GridView.builder(
             shrinkWrap: true,
             itemCount: fetchTrendingGifs.length,
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             itemBuilder: (context, index) {
-              return Image.network(fetchTrendingGifs[index].images?.original?.url ?? '');
+              return Image.network(
+                  fetchTrendingGifs[index].images?.original?.url ?? '');
             },
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 10, crossAxisSpacing: 10, crossAxisCount: 2),
+                mainAxisSpacing: 3, crossAxisSpacing: 3, crossAxisCount: 2),
           ),
         )
       ]),

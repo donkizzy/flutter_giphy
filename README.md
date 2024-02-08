@@ -41,8 +41,7 @@ dependencies:
 ### 2. Install it
 
 ```dart
-$ pub
-get
+$ pub get
 ```
 
 ## Usage
@@ -65,8 +64,10 @@ To handle the selected gif, you need to pass a callback function to the showGifP
 callback function will be called when the user selects a gif.
 
 ```dart
-FlutterGiphy.showGifPicker
-(
+FlutterGiphy flutterGiphy = FlutterGiphy(apiKey: 'yourgiphyapi_key');
+
+
+flutterGiphy.showGifPicker(
 context: context,
 apikey: 'your_giphy_api_key',
 onSelected: (GiphyData gif) {
@@ -81,13 +82,12 @@ You can clear the search input and reset the gif picker to the trending view usi
 method.
 
 ```dart
-FlutterGiphy.clearSearch
+flutterGiphy.clearSearch
 ();
 ```
 
 ```dart
- FlutterGiphy.showGifPicker
-(
+flutterGiphy.showGifPicker(
 context: context,
 searchBarDecoration: InputDecoration(
 hintText: 'Search Gif',
@@ -100,7 +100,7 @@ borderRadius: BorderRadius.all(Radius.circular(5)),
 ),
 suffixIcon: InkWell(
 onTap: () {
-FlutterGiphy.clearSearch();
+flutterGiphy.clearSearch();
 },
 child: const Icon(
 Icons.clear,
@@ -199,8 +199,3 @@ print('Failed to fetch GIFs: $e');
 
 This will print an error message if there's an error while fetching the GIFs.
 
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
