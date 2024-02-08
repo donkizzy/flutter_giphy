@@ -9,17 +9,31 @@ import 'package:flutter_giphy/utils/language_code.dart';
 
 /// Flutter Giphy makes it easy fou you be use Giphy in your flutter app
 class FlutterGiphy {
+  final String apiKey;
+  final String language;
+  late GifRepository _gifRepository;
+  late GiphyCubit _giphyCubit;
+
+  /// Constructor for the FlutterGiphy class.
+  ///
+  /// [apiKey] is the Giphy API key.
+  /// [language] is the language of the gifs. Default is English.
+  /// [gifRepository] is the repository for the gifs. Default is a new instance of GifRepository.
+
+  FlutterGiphy(
+      {required this.apiKey,
+      this.language = GiphyLanguage.English,
+      GifRepository? gifRepository}) {
+    assert(apiKey.trim() != '', 'Parameter apiKey should not be empty.');
+    _gifRepository = gifRepository ?? GifRepository(dio: Dio());
+    _giphyCubit = GiphyCubit(gifRepository: _gifRepository);
+  }
+
   // TextEditingController for the search field
-  static final searchController = TextEditingController();
+  final searchController = TextEditingController();
 
   // ValueNotifier for the search field
-  static final ValueNotifier<bool> searchNotifier = ValueNotifier<bool>(false);
-
-  // GifRepository instance for fetching gifs
-  static final GifRepository _gifRepository = GifRepository(dio: Dio());
-
-  // GiphyCubit instance for managing state
-  static final GiphyCubit _giphyCubit = GiphyCubit(gifRepository: _gifRepository);
+  final ValueNotifier<bool> searchNotifier = ValueNotifier<bool>(false);
 
   /// Displays a bottom sheet with a gif picker
   ///
@@ -32,7 +46,7 @@ class FlutterGiphy {
   /// [onSelected] is the callback when a gif is selected
   /// [language] is the language of the gifs
 
-  static void showGifPicker({
+  void showGifPicker({
     required BuildContext context,
     required String apikey,
     InputDecoration? searchBarDecoration,
@@ -46,12 +60,13 @@ class FlutterGiphy {
       context: context,
       backgroundColor: backgroundColor,
       isScrollControlled: true,
-      constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.8,
-      ),
+      // constraints: BoxConstraints(
+      //   maxHeight: MediaQuery.of(context).size.height * 0.8,
+      // ),
       builder: (BuildContext context) {
         return Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Column(
             children: [
               TextFormField(
@@ -106,7 +121,8 @@ class FlutterGiphy {
     );
   }
 
-  static void clearSearch() {
+  /// Clears the search field and resets the searchNotifier value to false.
+  void clearSearch() {
     searchController.clear();
     searchNotifier.value = false;
   }
