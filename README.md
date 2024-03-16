@@ -82,37 +82,37 @@ You can clear the search input and reset the gif picker to the trending view usi
 method.
 
 ```dart
-flutterGiphy.clearSearch
-();
+flutterGiphy.clearSearch();
 ```
 
 ```dart
-flutterGiphy.showGifPicker(
-context: context,
-searchBarDecoration: InputDecoration(
-hintText: 'Search Gif',
-prefixIcon: const Icon(
-Icons.search,
-color: Colors.white,
-),
-border: const OutlineInputBorder(
-borderRadius: BorderRadius.all(Radius.circular(5)),
-),
-suffixIcon: InkWell(
-onTap: () {
-flutterGiphy.clearSearch();
-},
-child: const Icon(
-Icons.clear,
-color: Colors.black,
-)),
-),
-apikey: 'your_giphy_api_key',
-onSelected: (GiphyData value) {
-setState(() {
-selectedGif = value;
-});
-});
+_flutterGiphy.showGifPicker(
+                context: context,
+                searchBarDecoration: InputDecoration(
+                  hintText: 'Search Gif',
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    color: Colors.black,
+                  ),
+                  border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                  ),
+                  suffixIcon: InkWell(
+                      onTap: () {
+                        _flutterGiphy.clearSearch();
+                        Navigator.pop(context);
+                      },
+                      child: const Icon(
+                        Icons.clear,
+                        color: Colors.black,
+                      )),
+                ),
+                apikey: 'your_giphy_api_key',
+                onSelected: (GiphyData value) {
+                  setState(() {
+                    selectedGif = value;
+                  });
+                });
 ```
 
 Please replace 'your_giphy_api_key' with your actual Giphy API key.
@@ -145,13 +145,8 @@ Maximum: “4999”
 
 ```dart
 
-var trendingGifs = await
-giphy.fetchTrendingGif
-(
-offset
-:
-0
-);
+var trendingGifs = await giphy.fetchTrendingGif(offset:0);
+
 ```
 
 This method returns a GiphyResponse object that contains a list of GiphyData objects. Each GiphyData
@@ -171,15 +166,17 @@ in a GridView:
   });
 }
 
-
-GridView.builder
-(
-itemCount: trendingGifs.data.length,
-itemBuilder: (context, index) {
-return Image.network(trendingGifs.data[index].images.original.url);
-},
-gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-);
+GridView.builder(
+            shrinkWrap: true,
+            itemCount: fetchTrendingGifs.length,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            itemBuilder: (context, index) {
+              return Image.network(
+              trendingGifs.data[index].images.original.url);
+            },
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 3, crossAxisSpacing: 3, crossAxisCount: 2),
+          );
 ```
 
 This will create a grid view with 2 columns that displays the trending GIFs.
