@@ -1,6 +1,6 @@
 name: flutter_giphy
 description: Fetch,Search and Share Gifs,Stickers(coming soon) from Giphy in your Flutter app.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/donkizzy/flutter_giphy
 repository: https://github.com/donkizzy/flutter_giphy
 
